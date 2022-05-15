@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">ArtNesia</string>
+    <string name="search_tittle">Search</string>
+    <string name="kategori_tittle">Kategori</string>
+    <string name="literatur_tittle">Literatur</string>
+    <string name="artikel_tittle">Artikel</string>
 </resources>
