@@ -4,4 +4,18 @@
     <string name="kategori_tittle">Kategori</string>
     <string name="literatur_tittle">Literatur</string>
     <string name="artikel_tittle">Artikel</string>
+    <string name="iv_literature_detail">Literature Image View</string>
+    <string name="iv_login">Login Image View</string>
+    <string name="tv_login">LOGIN</string>
+    <string name="tv_email">Email</string>
+    <string name="tv_password">Password</string>
+    <string name="tv_akun">Tidak Punya Akun?</string>
+    <string name="tv_daftar">Daftar</string>
+    <string name="iv_register">Register Image View</string>
+    <string name="tv_registrasi">REGISTRASI</string>
+    <string name="tv_nama">Nama</string>
+    <string name="tv_passConfirm">Konfirmasi Password</string>
+    <string name="tv_infoRegis">Sudah Punya Akun?</string>
+    <string name="tv_lowerLogin">Login</string>
+    <string name="tv_articleRow">Article Row Image View</string>
 </resources>

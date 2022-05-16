@@ -43,12 +43,12 @@
                         android:singleLine="true"
                         android:textSize="14sp"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/exp_btn_search"
+                        app:layout_constraintEnd_toStartOf="@+id/exp_btn_more"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <ImageButton
-                        android:id="@+id/exp_btn_search"
+                        android:id="@+id/exp_btn_more"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         android:background="@null"
@@ -63,6 +63,7 @@
 
             <TextView
                 android:id="@+id/tv_kategori"
+                style="@style/TextTittle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -83,16 +84,18 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_category"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
                     android:orientation="horizontal"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    android:layout_centerVertical="true"
                     tools:listitem="@layout/category_row" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
                 android:id="@+id/tv_literatur"
+                style="@style/TextTittle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -118,6 +121,7 @@
 
 
                 <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_literature"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     tools:listitem="@layout/literature_row" />
@@ -125,6 +129,7 @@
 
             <TextView
                 android:id="@+id/tv_artikel"
+                style="@style/TextTittle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -149,11 +154,12 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_article"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
                     android:orientation="horizontal"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    android:layout_centerVertical="true"
                     tools:listitem="@layout/article_row" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 

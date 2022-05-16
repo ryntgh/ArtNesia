@@ -30,10 +30,12 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:srcCompat="@tools:sample/backgrounds/scenic[2]" />
+                    tools:srcCompat="@tools:sample/backgrounds/scenic[2]"
+                    android:contentDescription="@string/iv_literature_detail" />
 
                 <TextView
                     android:id="@+id/tv_detail_artName"
+                    style="@style/TextTittle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
@@ -46,6 +48,7 @@
 
                 <TextView
                     android:id="@+id/tv_detail_origin"
+                    style="@style/TextTittle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
@@ -57,12 +60,12 @@
 
                 <TextView
                     android:id="@+id/tv_deail_desc"
+                    style="@style/TextContent"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="32dp"
                     android:layout_marginEnd="24dp"
-                    android:fontFamily="@font/mmedium"
                     android:padding="5dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -72,12 +75,12 @@
 
             <TextView
                 android:id="@+id/tv_detail_another"
+                style="@style/TextTittle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="24dp"
                 android:layout_marginBottom="5dp"
-                android:fontFamily="@font/mmedium"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"

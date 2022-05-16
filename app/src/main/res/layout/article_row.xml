@@ -30,19 +30,20 @@
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toTopOf="parent"
-            tools:src="@tools:sample/backgrounds/scenic" />
+            tools:src="@tools:sample/backgrounds/scenic"
+            android:contentDescription="@string/tv_articleRow" />
 
         <TextView
             android:id="@+id/tv_articleTittle"
+            style="@style/TextContent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:fontFamily="@font/pregular"
             android:textStyle="bold"
-            tools:text="Article Title"
             card_view:layout_constraintStart_toStartOf="parent"
-            card_view:layout_constraintTop_toBottomOf="@+id/img_item_article" />
+            card_view:layout_constraintTop_toBottomOf="@+id/img_item_article"
+            tools:text="Article Title" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
