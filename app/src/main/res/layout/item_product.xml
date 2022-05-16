@@ -23,7 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            android:src="@drawable/image_loading"
+            android:src="@tools:sample/backgrounds/scenic[1]"
             android:contentDescription="item product image" />
 
     </androidx.cardview.widget.CardView>
