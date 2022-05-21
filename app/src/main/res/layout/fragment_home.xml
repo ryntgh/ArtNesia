@@ -12,7 +12,7 @@
         android:layout_height="180dp"
         android:contentDescription="Home Background"
         android:scaleType="centerCrop"
-        android:src="@tools:sample/backgrounds/scenic[2]"
+        android:src="@drawable/contoh3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -84,7 +84,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="120dp"
                     android:scaleType="centerCrop"
-                    android:src="@tools:sample/backgrounds/scenic[9]" />
+                    android:src="@drawable/contoh4" />
             </LinearLayout>
 
             <LinearLayout
@@ -194,7 +194,7 @@
                             android:layout_weight="1" />
 
                         <TextView
-                            android:id="@+id/saleProduct_ViewAll"
+                            android:id="@+id/article_ViewAll"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:gravity="center"
@@ -217,7 +217,7 @@
                 </LinearLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/saleRecView"
+                    android:id="@+id/articleRecView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp">

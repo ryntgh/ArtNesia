@@ -13,7 +13,7 @@
     card_view:cardCornerRadius="4dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="8dp">
 
@@ -22,16 +22,16 @@
             android:layout_width="200dp"
             android:layout_height="100dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="4dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
+            android:contentDescription="@string/tv_articleRow"
             android:scaleType="fitXY"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toTopOf="parent"
-            tools:src="@tools:sample/backgrounds/scenic"
-            android:contentDescription="@string/tv_articleRow" />
+            card_view:layout_constraintVertical_bias="0.252" />
 
         <TextView
             android:id="@+id/tv_articleTittle"
@@ -44,6 +44,19 @@
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toBottomOf="@+id/img_item_article"
             tools:text="Article Title" />
+
+        <TextView
+            android:id="@+id/tv_articleDescription"
+            style="@style/TextContent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:maxLength="30"
+            android:maxLines="1"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toBottomOf="@+id/tv_articleTittle"
+            tools:text="Article Description" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
