@@ -42,8 +42,6 @@ class LiteratureAdapter (val activity: Activity): RecyclerView.Adapter<Literatur
                     .into(binding.imgItemLiterature)
 
                 binding.nameItemLiterature.text = literature.name
-                binding.originItemLiterature.text = literature.origin
-                binding.descItemLiterature.text = literature.description
 
                 itemView.setOnClickListener {
                     val i = Intent(activity, DetailLiteratureActivity::class.java)
