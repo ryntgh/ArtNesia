@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@color/background" />
+
+
+    <item
+        android:bottom="50dp"
+        android:drawable="@drawable/ic_broken_image"
+        android:left="50dp"
+        android:right="50dp"
+        android:top="50dp" />
+</layer-list>

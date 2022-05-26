@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomeFragment">
+    tools:context=".ui.fragment.HomeFragment">
 
     <ImageView
         android:id="@+id/img_view1"
@@ -37,7 +37,11 @@
                 android:background="@drawable/bg_searchview"
                 android:backgroundTint="@color/white"
                 android:hint="Search"
+                android:padding="10dp"
                 android:inputType="text"
+                android:singleLine="true"
+                android:textSize="14sp"
+                android:imeOptions="actionSearch"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/imageButton"
                 app:layout_constraintStart_toStartOf="parent"
@@ -80,11 +84,17 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <ImageView
+                <com.denzcoskun.imageslider.ImageSlider
+                    android:id="@+id/isHome"
                     android:layout_width="match_parent"
                     android:layout_height="120dp"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/contoh4" />
+                    app:iss_auto_cycle="true"
+                    app:iss_corner_radius="20"
+                    app:iss_delay="0"
+                    app:iss_error_image="@drawable/ic_error"
+                    app:iss_period="2000"
+                    app:iss_placeholder="@drawable/ic_loading"/>
             </LinearLayout>
 
             <LinearLayout

@@ -5,7 +5,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bangkit.artnesia.DetailLiteratureActivity
+import com.bangkit.artnesia.ui.activity.DetailLiteratureActivity
 import com.bangkit.artnesia.data.model.ArticleModel
 import com.bangkit.artnesia.databinding.ArticleRowBinding
 import com.bumptech.glide.Glide

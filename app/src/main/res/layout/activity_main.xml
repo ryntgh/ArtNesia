@@ -1,30 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".ui.activity.MainActivity">
 
     <FrameLayout
-        android:background="@color/white"
         android:id="@+id/nav_fragment"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNavMenu"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-    </FrameLayout>
+        android:layout_height="match_parent"
+        android:background="@color/white"/>
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavMenu"
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabCamera"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/secondary"
+        android:clickable="true"
+        android:contentDescription="CameraButtonHome"
+        android:focusable="true"
+        android:src="@drawable/ic_camera"
+        app:borderWidth="0dp"
+        app:fabSize="normal"
+        app:layout_anchor="@id/bottomBar"
+        app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior"
+        app:rippleColor="@color/white"
+        app:tint="@android:color/white" />
+
+    <com.google.android.material.bottomappbar.BottomAppBar
+        android:id="@+id/bottomBar"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:background="@drawable/menu_bg"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottom_nav_menu"
-        />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        app:fabAlignmentMode="center"
+        app:fabCradleMargin="12dp"
+        app:fabCradleRoundedCornerRadius="20dp"
+        app:hideOnScroll="true">
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottomNavMenu"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="16dp"
+            android:background="@android:color/transparent"
+            app:itemIconTint="@drawable/item_selector"
+            app:itemRippleColor="@null"
+            app:labelVisibilityMode="unlabeled"
+            app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior"
+            app:menu="@menu/bottom_nav_menu" />
+
+    </com.google.android.material.bottomappbar.BottomAppBar>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

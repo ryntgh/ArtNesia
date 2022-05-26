@@ -1,4 +1,4 @@
-package com.bangkit.artnesia
+package com.bangkit.artnesia.ui.activity
 
 import android.app.Activity
 import android.content.Intent
@@ -6,8 +6,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.fragment.app.FragmentTransaction
+import com.bangkit.artnesia.R
 import com.bangkit.artnesia.databinding.ActivityMainBinding
-import com.bangkit.artnesia.ui.activity.CameraActivity
+import com.bangkit.artnesia.ui.fragment.ExploreFragment
+import com.bangkit.artnesia.ui.fragment.HomeFragment
+import com.bangkit.artnesia.ui.fragment.ProfileFragment
 import com.bangkit.artnesia.ui.fragment.ShopFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -20,7 +23,13 @@ class MainActivity : AppCompatActivity() {
         val binding: ActivityMainBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.bottomNavMenu.background = null
         bottomNavigationView.setOnNavigationItemSelectedListener(bottomItemSelectedListener)
+
+        binding.fabCamera.setOnClickListener {
+            val intent = Intent(this@MainActivity , CameraActivity::class.java)
+            startActivity(intent)
+        }
 
         if (savedInstanceState != null) {
             savedInstanceState.getInt(SELECTED_MENU)
@@ -49,10 +58,6 @@ class MainActivity : AppCompatActivity() {
                             .commit()
                         return true
                     }
-                    R.id.cameraMenu -> {
-                        loadActivity(CameraActivity())
-                        return true
-                    }
                     R.id.literatureMenu -> {
                         val fragment = ExploreFragment()
                         supportFragmentManager.beginTransaction()
@@ -73,11 +78,6 @@ class MainActivity : AppCompatActivity() {
                 return false
             }
         }
-
-    private fun loadActivity(activity: Activity){
-        val intentActivity = Intent(this, activity::class.java)
-        startActivity(intentActivity)
-    }
 
     companion object {
         const val SELECTED_MENU = "selected_menu"

@@ -13,8 +13,8 @@
 
     <item
         android:id="@+id/cameraMenu"
-        android:title="Camera"
-        android:icon="@drawable/ic_camera"/>
+        android:title=""
+        />
 
     <item
         android:id="@+id/literatureMenu"

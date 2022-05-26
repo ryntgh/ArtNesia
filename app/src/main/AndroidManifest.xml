@@ -19,16 +19,16 @@
             android:name=".ui.activity.CameraActivity"
             android:exported="false" />
         <activity
-            android:name=".RegisterActivity"
+            android:name=".ui.activity.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".ui.activity.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".DetailLiteratureActivity"
+            android:name=".ui.activity.DetailLiteratureActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
