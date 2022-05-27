@@ -12,3 +12,7 @@ data class ArticleModel (
     var name: String = "",
     var description: String = ""
 )
+
+data class CategoryModel (
+    var categoryName: String = ""
+)

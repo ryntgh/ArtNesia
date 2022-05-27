@@ -46,7 +46,7 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
-    //circle image view
+    //Circle Image View
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 
     //RoundedImage
@@ -57,9 +57,14 @@ dependencies {
     implementation "androidx.recyclerview:recyclerview-selection:1.1.0"
     implementation "androidx.cardview:cardview:1.0.0"
 
-    //glide
+    //Glide
     implementation 'com.github.bumptech.glide:glide:4.13.1'
 
-    //imageSlider
+    //ImageSlider
     implementation 'com.github.denzcoskun:ImageSlideshow:0.1.0'
+
+    //CameraX
+    implementation "androidx.camera:camera-camera2:1.2.0-alpha01"
+    implementation "androidx.camera:camera-lifecycle:1.2.0-alpha01"
+    implementation "androidx.camera:camera-view:1.2.0-alpha01"
 }
