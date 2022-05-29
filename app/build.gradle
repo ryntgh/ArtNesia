@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-parcelize'
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -67,4 +68,11 @@ dependencies {
     implementation "androidx.camera:camera-camera2:1.2.0-alpha01"
     implementation "androidx.camera:camera-lifecycle:1.2.0-alpha01"
     implementation "androidx.camera:camera-view:1.2.0-alpha01"
+
+    //Firebase
+    implementation platform('com.google.firebase:firebase-bom:25.11.0')
+    implementation 'com.google.firebase:firebase-auth-ktx:21.0.5'
+    implementation 'com.google.firebase:firebase-firestore-ktx:24.1.2'
+    implementation 'com.google.firebase:firebase-storage-ktx:20.0.1'
+    implementation 'com.google.firebase:firebase-analytics-ktx:21.0.0'
 }
