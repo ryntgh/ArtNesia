@@ -1,5 +1,8 @@
 package com.bangkit.artnesia.ui.activity
 
+import android.Manifest
+import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.view.WindowInsets
@@ -8,9 +11,12 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageCapture
+import androidx.camera.core.ImageCaptureException
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.bangkit.artnesia.createFile
 import com.bangkit.artnesia.databinding.ActivityCameraBinding
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
@@ -28,11 +34,14 @@ class CameraActivity : AppCompatActivity() {
 
         cameraExecutor = Executors.newSingleThreadExecutor()
 
-        binding.switchCamera.setOnClickListener {
-            cameraSelector =
-                if (cameraSelector == CameraSelector.DEFAULT_BACK_CAMERA) CameraSelector.DEFAULT_FRONT_CAMERA
-                else CameraSelector.DEFAULT_BACK_CAMERA
-            startCamera()
+        binding.captureImage.setOnClickListener { takePhoto() }
+
+        if (!allPermissionsGranted()) {
+            ActivityCompat.requestPermissions(
+                this,
+                REQUIRED_PERMISSIONS,
+                REQUEST_CODE_PERMISSIONS
+            )
         }
     }
 
@@ -67,6 +76,36 @@ class CameraActivity : AppCompatActivity() {
         }, ContextCompat.getMainExecutor(this))
     }
 
+    private fun takePhoto() {
+        val imageCapture = imageCapture ?: return
+        val photoFile = createFile(application)
+        val outputOptions = ImageCapture.OutputFileOptions.Builder(photoFile).build()
+        imageCapture.takePicture(
+            outputOptions,
+            ContextCompat.getMainExecutor(this),
+            object : ImageCapture.OnImageSavedCallback {
+                override fun onError(exc: ImageCaptureException) {
+                    Toast.makeText(
+                        this@CameraActivity,
+                        "Failed",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+
+                override fun onImageSaved(output: ImageCapture.OutputFileResults) {
+                    val intent = Intent()
+                    intent.putExtra("picture", photoFile)
+                    intent.putExtra(
+                        "isBackCamera",
+                        cameraSelector == CameraSelector.DEFAULT_BACK_CAMERA
+                    )
+                    setResult(CAMERA_X_RESULT, intent)
+                    finish()
+                }
+            }
+        )
+    }
+
     private fun hideSystemUI() {
         @Suppress("DEPRECATION")
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
@@ -90,5 +129,32 @@ class CameraActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         cameraExecutor.shutdown()
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == REQUEST_CODE_PERMISSIONS) {
+            if (!allPermissionsGranted()) {
+                Toast.makeText(
+                    this,
+                    "No permission granted.",
+                    Toast.LENGTH_SHORT
+                ).show()
+                finish()
+            }
+        }
+    }
+    private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
+        ContextCompat.checkSelfPermission(baseContext, it) == PackageManager.PERMISSION_GRANTED
+    }
+
+    companion object {
+        const val CAMERA_X_RESULT = 200
+        private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.CAMERA)
+        private const val REQUEST_CODE_PERMISSIONS = 10
     }
 }

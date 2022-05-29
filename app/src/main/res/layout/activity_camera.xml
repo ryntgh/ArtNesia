@@ -24,7 +24,7 @@
         app:srcCompat="@drawable/ic_capture" />
 
     <ImageView
-        android:id="@+id/switchCamera"
+        android:id="@+id/galleryButton"
         android:layout_width="45dp"
         android:layout_height="45dp"
         android:layout_marginStart="40dp"
