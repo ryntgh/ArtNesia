@@ -20,4 +20,6 @@
     <color name="light">#F0E3CA</color>
     <color name="dark">#1B1A17</color>
     <color name="background">#F9F9F9</color>
+    <color name="primary_light">#FF992F</color>
+    <color name="primary_dark">#9A4E00</color>
 </resources>
