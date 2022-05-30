@@ -14,6 +14,7 @@ class ExploreLiteratureAdapter(val activity: Activity) :
     RecyclerView.Adapter<ExploreLiteratureAdapter.ViewHolder>() {
 
     private var listLiterature = arrayListOf<LiteratureModel>()
+    private val limit = 3
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding =
@@ -22,7 +23,11 @@ class ExploreLiteratureAdapter(val activity: Activity) :
     }
 
     override fun getItemCount(): Int {
-        return listLiterature.size
+        return if (listLiterature.size > limit) {
+            limit
+        } else {
+            listLiterature.size
+        }
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {

@@ -17,7 +17,7 @@
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginBottom="16dp"
-        android:contentDescription="ImageCaptureImageView"
+        android:contentDescription="@string/iv_content_desc"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -29,11 +29,36 @@
         android:layout_height="45dp"
         android:layout_marginStart="40dp"
         android:layout_marginBottom="32dp"
-        android:contentDescription="GalleryImageView"
+        android:contentDescription="@string/iv_content_desc"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/captureImage"
         app:srcCompat="@drawable/ic_gallery" />
+
+    <Button
+        android:id="@+id/galleryImageUse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:backgroundTint="@color/secondary"
+        android:text="@string/use_image"
+        android:visibility="invisible"
+        app:cornerRadius="7dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/galleryImagePreview"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/bg_app_gradient"
+        android:contentDescription="@string/iv_content_desc" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

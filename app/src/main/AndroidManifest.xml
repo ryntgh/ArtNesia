@@ -19,6 +19,12 @@
             android:name=".ui.activity.MainActivity"
             android:exported="false" />
         <activity
+            android:name=".ui.activity.DetailArticleActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activity.DetectionActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.activity.ProductDetailActivity"
             android:exported="false" />
         <activity

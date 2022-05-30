@@ -3,11 +3,14 @@ package com.bangkit.artnesia.ui.activity
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageCapture
@@ -16,25 +19,27 @@ import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.bangkit.artnesia.createFile
 import com.bangkit.artnesia.databinding.ActivityCameraBinding
+import com.bangkit.artnesia.ui.utils.createFile
+import com.bangkit.artnesia.ui.utils.reduceFileImage
+import com.bangkit.artnesia.ui.utils.uriToFile
+import java.io.File
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
 class CameraActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCameraBinding
     private lateinit var cameraExecutor: ExecutorService
+
     private var cameraSelector: CameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
     private var imageCapture: ImageCapture? = null
+    private var imageFile: File? = null
+    private var imageUri: Uri? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCameraBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        cameraExecutor = Executors.newSingleThreadExecutor()
-
-        binding.captureImage.setOnClickListener { takePhoto() }
 
         if (!allPermissionsGranted()) {
             ActivityCompat.requestPermissions(
@@ -42,6 +47,23 @@ class CameraActivity : AppCompatActivity() {
                 REQUIRED_PERMISSIONS,
                 REQUEST_CODE_PERMISSIONS
             )
+        }
+        cameraExecutor = Executors.newSingleThreadExecutor()
+
+        binding.captureImage.setOnClickListener { takePhoto() }
+
+        binding.galleryButton.setOnClickListener {
+            val intent = Intent()
+            intent.action = Intent.ACTION_GET_CONTENT
+            intent.type = "image/*"
+            val chooser = Intent.createChooser(intent, "Choose a Picture")
+            launcherIntentGallery.launch(chooser)
+        }
+
+        binding.galleryImageUse.setOnClickListener {
+            val i = Intent(this@CameraActivity, DetectionActivity::class.java)
+            i.putExtra("uriImage", imageUri.toString())
+            startActivity(i)
         }
     }
 
@@ -93,17 +115,36 @@ class CameraActivity : AppCompatActivity() {
                 }
 
                 override fun onImageSaved(output: ImageCapture.OutputFileResults) {
-                    val intent = Intent()
-                    intent.putExtra("picture", photoFile)
+                    val file = reduceFileImage(photoFile)
+                    val intent = Intent(this@CameraActivity, DetectionActivity::class.java)
+                    intent.putExtra("picture", file)
                     intent.putExtra(
                         "isBackCamera",
                         cameraSelector == CameraSelector.DEFAULT_BACK_CAMERA
                     )
-                    setResult(CAMERA_X_RESULT, intent)
-                    finish()
+                    startActivity(intent)
                 }
             }
         )
+    }
+
+    private val launcherIntentGallery = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) { result ->
+        if (result.resultCode == RESULT_OK) {
+            val selectedImg: Uri = result.data?.data as Uri
+            val myFile = uriToFile(selectedImg, this)
+            imageFile = myFile
+            imageUri = selectedImg
+            binding.apply {
+                galleryImagePreview.setImageURI(selectedImg)
+                viewFinder.visibility = View.INVISIBLE
+                captureImage.visibility = View.INVISIBLE
+                galleryButton.visibility = View.VISIBLE
+                galleryImageUse.visibility = View.VISIBLE
+                galleryImagePreview.visibility = View.VISIBLE
+            }
+        }
     }
 
     private fun hideSystemUI() {
@@ -148,12 +189,12 @@ class CameraActivity : AppCompatActivity() {
             }
         }
     }
+
     private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
         ContextCompat.checkSelfPermission(baseContext, it) == PackageManager.PERMISSION_GRANTED
     }
 
     companion object {
-        const val CAMERA_X_RESULT = 200
         private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.CAMERA)
         private const val REQUEST_CODE_PERMISSIONS = 10
     }

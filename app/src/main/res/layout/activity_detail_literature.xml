@@ -92,6 +92,7 @@
                 android:layout_height="500dp">
 
                 <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_literature_more"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     tools:listitem="@layout/literature_row" />

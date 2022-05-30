@@ -18,4 +18,9 @@
     <string name="tv_infoRegis">Already have an account?</string>
     <string name="tv_lowerLogin">Login</string>
     <string name="tv_articleRow">Article Row Image View</string>
+    <string name="find_another">Find Another</string>
+    <string name="iv_content_desc">Image View Content Description</string>
+    <string name="use_image">Use Image</string>
+    <string name="more_about_this_art">More about this art</string>
+    <string name="tv_classified_item">This image classified as \"WHAT\"</string>
 </resources>

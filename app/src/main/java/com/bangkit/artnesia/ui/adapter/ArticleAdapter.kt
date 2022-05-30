@@ -5,13 +5,13 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bangkit.artnesia.ui.activity.DetailLiteratureActivity
 import com.bangkit.artnesia.data.model.ArticleModel
 import com.bangkit.artnesia.databinding.ArticleRowBinding
+import com.bangkit.artnesia.ui.activity.DetailArticleActivity
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 
-class ArticleAdapter (val activity: Activity): RecyclerView.Adapter<ArticleAdapter.ViewHolder>() {
+class ArticleAdapter(val activity: Activity) : RecyclerView.Adapter<ArticleAdapter.ViewHolder>() {
 
     private var article = arrayListOf<ArticleModel>()
 
@@ -33,24 +33,23 @@ class ArticleAdapter (val activity: Activity): RecyclerView.Adapter<ArticleAdapt
         article.addAll(courseItems)
     }
 
-    inner class ViewHolder(private val binding: ArticleRowBinding): RecyclerView.ViewHolder(binding.root){
-        fun bind(article: ArticleModel){
-            with(binding){
-                Glide.with(itemView.context)
-                    .load(article.image)
-                    .apply(RequestOptions().override(350, 550))
-                    .into(binding.imgItemArticle)
+    inner class ViewHolder(private val binding: ArticleRowBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(article: ArticleModel) {
+            Glide.with(itemView.context)
+                .load(article.image)
+                .apply(RequestOptions().override(350, 550))
+                .into(binding.imgItemArticle)
 
-                binding.tvArticleTittle.text = article.name
-                binding.tvArticleDescription.text = article.description
+            binding.tvArticleTittle.text = article.name
+            binding.tvArticleDescription.text = article.description
 
-                itemView.setOnClickListener {
-                    val i = Intent(activity, DetailLiteratureActivity::class.java)
-                    i.putExtra("IMAGE_KEY", article.image)
-                    i.putExtra("NAME_KEY", article.name)
-                    i.putExtra("SUMMARY_KEY", article.description)
-                    activity.startActivity(i)
-                }
+            itemView.setOnClickListener {
+                val i = Intent(activity, DetailArticleActivity::class.java)
+                i.putExtra("IMAGE_KEY", article.image)
+                i.putExtra("NAME_KEY", article.name)
+                i.putExtra("SUMMARY_KEY", article.description)
+                activity.startActivity(i)
             }
         }
     }
