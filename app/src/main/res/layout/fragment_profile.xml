@@ -94,6 +94,7 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/cv_myproduct"
             android:layout_width="match_parent"
             android:layout_height="70dp"
             android:layout_marginTop="30dp"
@@ -118,7 +119,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="My Orders"
+                        android:text="My Product"
                         android:textColor="@color/mainText"
                         android:textSize="16sp" />
 
@@ -126,7 +127,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
-                        android:text="you have no orders"
+                        android:text="Sell your own product here"
                         android:textColor="@color/textAd"
                         android:textSize="12sp" />
 
@@ -141,7 +142,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/shippingAddressCard_ProfilePage"
+            android:id="@+id/cv_myOrder"
             android:layout_width="match_parent"
             android:layout_height="70dp"
             app:cardBackgroundColor="@color/white"
@@ -166,7 +167,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Shipping addresses"
+                        android:text="My Order"
                         android:textColor="@color/mainText"
                         android:textSize="16sp" />
 
@@ -174,7 +175,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
-                        android:text="No Address"
+                        android:text="Check your Order"
                         android:textColor="@color/textAd"
                         android:textSize="12sp" />
 
@@ -189,7 +190,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/paymentMethod_ProfilePage"
+            android:id="@+id/cv_address"
             android:layout_width="match_parent"
             android:layout_height="70dp"
             android:layout_marginTop="5dp"
@@ -215,7 +216,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Promo Codes"
+                        android:text="Address"
                         android:textColor="@color/mainText"
                         android:textSize="16sp" />
 
@@ -224,7 +225,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
-                        android:text="You have special promo codes"
+                        android:text="Place your address"
                         android:textColor="@color/textAd"
                         android:textSize="12sp" />
 
@@ -287,7 +288,7 @@
 
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/settingCd_profileFrag"
+            android:id="@+id/cv_editProfile"
             android:layout_width="match_parent"
             android:layout_height="70dp"
 
@@ -314,7 +315,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Settings"
+                        android:text="Edit Profile"
                         android:textColor="@color/mainText"
                         android:textSize="16sp" />
 
@@ -322,8 +323,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
+                        android:text="Set your profile info"
                         android:textColor="@color/textAd"
-                        android:text="Notifications, password"
                         android:textSize="12sp" />
 
                 </LinearLayout>
