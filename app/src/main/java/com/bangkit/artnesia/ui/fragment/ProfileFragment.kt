@@ -12,6 +12,7 @@ import com.bangkit.artnesia.R
 import com.bangkit.artnesia.data.model.User
 import com.bangkit.artnesia.databinding.FragmentProfileBinding
 import com.bangkit.artnesia.ui.activity.LoginActivity
+import com.bangkit.artnesia.ui.activity.MyProductActivity
 import com.bangkit.artnesia.ui.activity.UserProfileActivity
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
@@ -31,6 +32,12 @@ class ProfileFragment : Fragment() {
         _binding = FragmentProfileBinding.inflate(layoutInflater , container , false)
 
         getUserDetails()
+
+        binding.cvMyproduct.setOnClickListener {
+            activity?.let {
+                it.startActivity(Intent(it, MyProductActivity::class.java))
+            }
+        }
 
         binding.cvEditProfile.setOnClickListener {
             activity?.let {
