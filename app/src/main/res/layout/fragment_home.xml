@@ -6,73 +6,27 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragment.HomeFragment">
 
-    <ImageView
-        android:id="@+id/img_view1"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="180dp"
-        android:contentDescription="Home Background"
-        android:scaleType="centerCrop"
-        android:src="@drawable/contoh3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <RelativeLayout
-        android:id="@+id/relativeLayout"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:padding="10dp"
+        android:layout_height="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
-            <EditText
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:autofillHints="no"
-                android:background="@drawable/bg_searchview"
-                android:backgroundTint="@color/white"
-                android:hint="Search"
-                android:padding="10dp"
-                android:inputType="text"
-                android:singleLine="true"
-                android:textSize="14sp"
-                android:imeOptions="actionSearch"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/imageButton"
+            <ImageView
+                android:id="@+id/img_view1"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:contentDescription="Home Background"
+                android:scaleType="centerCrop"
+                android:src="@drawable/bg_home"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageButton
-                android:id="@+id/imageButton"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:contentDescription="img_btn"
-                android:src="@drawable/ic_more"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintDimensionRatio="1:1"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </RelativeLayout>
-
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="549dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/img_view1"
-        tools:layout_editor_absoluteX="2dp"
-        tools:layout_editor_absoluteY="180dp">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
 
             <LinearLayout
                 android:id="@+id/img_view2"
@@ -82,7 +36,7 @@
                 android:padding="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toBottomOf="@id/img_view1">
 
                 <com.denzcoskun.imageslider.ImageSlider
                     android:id="@+id/isHome"
@@ -94,7 +48,7 @@
                     app:iss_delay="0"
                     app:iss_error_image="@drawable/ic_error"
                     app:iss_period="2000"
-                    app:iss_placeholder="@drawable/ic_loading"/>
+                    app:iss_placeholder="@drawable/ic_loading" />
             </LinearLayout>
 
             <LinearLayout
@@ -230,16 +184,58 @@
                     android:id="@+id/articleRecView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp">
-                </androidx.recyclerview.widget.RecyclerView>
+                    android:layout_marginTop="20dp" />
 
                 <View
                     android:layout_width="1dp"
-                    android:layout_height="30dp"/>
+                    android:layout_height="80dp" />
             </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:autofillHints="no"
+                android:background="@drawable/bg_searchview"
+                android:backgroundTint="@color/white"
+                android:hint="Search"
+                android:padding="10dp"
+                android:inputType="text"
+                android:singleLine="true"
+                android:textSize="14sp"
+                android:imeOptions="actionSearch"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/imageButton"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/imageButton"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:contentDescription="img_btn"
+                android:src="@drawable/ic_more"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
