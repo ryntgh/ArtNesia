@@ -1,6 +1,7 @@
 package com.bangkit.artnesia.ui.fragment
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,28 +13,27 @@ import com.bangkit.artnesia.R
 import com.bangkit.artnesia.data.local.ArticleData
 import com.bangkit.artnesia.data.local.LiteratureData
 import com.bangkit.artnesia.data.model.ArticleModel
+import com.bangkit.artnesia.data.model.Literature
 import com.bangkit.artnesia.data.model.LiteratureModel
 import com.bangkit.artnesia.databinding.FragmentHomeBinding
 import com.bangkit.artnesia.ui.adapter.ArticleAdapter
 import com.bangkit.artnesia.ui.adapter.LiteratureAdapter
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
+import com.google.firebase.firestore.*
 
 class HomeFragment : Fragment() {
 
     private var _binding : FragmentHomeBinding? = null
     private val binding get() = _binding as FragmentHomeBinding
 
+    private val mFireStore = FirebaseFirestore.getInstance()
+
     private lateinit var literatureAdapter: LiteratureAdapter
+    private lateinit var literatureList: ArrayList<Literature>
+    private lateinit var literatureRV: RecyclerView
+
     private lateinit var articleAdapter: ArticleAdapter
-
-    private fun getLiterature(): List<LiteratureModel> {
-        return LiteratureData.generateLiterature()
-    }
-
-    private fun getArticle(): List<ArticleModel>{
-        return ArticleData.generateArticle()
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -56,17 +56,60 @@ class HomeFragment : Fragment() {
 
         binding.isHome.setImageList(slideModel , ScaleTypes.CENTER_CROP)
 
-        literatureAdapter = LiteratureAdapter(requireActivity())
-        literatureAdapter.setData(getLiterature())
+        getLiterature()
+
         articleAdapter = ArticleAdapter(requireActivity())
         articleAdapter.setData(getArticle())
-
-        binding.exploreRecView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        binding.exploreRecView.setHasFixedSize(true)
-        binding.exploreRecView.adapter = literatureAdapter
 
         binding.articleRecView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         binding.articleRecView.setHasFixedSize(true)
         binding.articleRecView.adapter = articleAdapter
+    }
+
+    private fun getLiterature(){
+        literatureRV = binding.exploreRecView
+        literatureRV.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        literatureRV.setHasFixedSize(true)
+
+        literatureList = arrayListOf()
+
+        literatureAdapter  = LiteratureAdapter(requireActivity() , literatureList)
+
+        literatureRV.adapter = literatureAdapter
+
+        getLiteratureData()
+    }
+
+    private fun getArticle(): List<ArticleModel>{
+        return ArticleData.generateArticle()
+    }
+
+    private fun getLiteratureData() {
+        mFireStore.collection("literature")
+            .addSnapshotListener(object : EventListener<QuerySnapshot> {
+                override fun onEvent(
+                    value: QuerySnapshot?,
+                    error: FirebaseFirestoreException?
+                ) {
+                    if (error!=null){
+                        Log.e("Firestore error", error.message.toString())
+                        return
+                    }
+
+                    for (dc: DocumentChange in value?.documentChanges!!){
+                        if (dc.type == DocumentChange.Type.ADDED){
+                            //productArrayList.add(dc.document.toObject(Product::class.java))
+                            val lit = dc.document.toObject(Literature::class.java)
+                            lit.literature_id = dc.document.id
+
+                            literatureList.add(lit)
+                        }
+                    }
+                    //randomize list
+                    literatureList.shuffle()
+
+                    literatureAdapter.notifyDataSetChanged()
+                }
+            })
     }
 }
