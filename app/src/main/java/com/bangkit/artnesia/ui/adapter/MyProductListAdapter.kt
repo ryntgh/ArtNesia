@@ -1,6 +1,7 @@
 package com.bangkit.artnesia.ui.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bangkit.artnesia.R
 import com.bangkit.artnesia.data.model.Product
+import com.bangkit.artnesia.ui.activity.DetailProductActivity
 import com.bangkit.artnesia.ui.activity.MyProductActivity
 import com.bumptech.glide.Glide
 
@@ -42,6 +44,13 @@ class MyProductListAdapter (
 
         holder.productName.text = product.title
         holder.productPrice.text = "Rp "+product.price
+
+        holder.itemView.setOnClickListener {
+            val intent = Intent(context, DetailProductActivity::class.java)
+            intent.putExtra(DetailProductActivity.EXTRA_PRODUCT_ID, product.product_id)
+            intent.putExtra(DetailProductActivity.EXTRA_PRODUCT_OWNER_ID, product.user_id)
+            context.startActivity(intent)
+        }
     }
 
     override fun getItemCount(): Int {
