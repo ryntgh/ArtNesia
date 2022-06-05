@@ -49,6 +49,7 @@ class MyProductListAdapter (
             val intent = Intent(context, DetailProductActivity::class.java)
             intent.putExtra(DetailProductActivity.EXTRA_PRODUCT_ID, product.product_id)
             intent.putExtra(DetailProductActivity.EXTRA_PRODUCT_OWNER_ID, product.user_id)
+            intent.putExtra(DetailProductActivity.IS_MYPRODUCT, "1")
             context.startActivity(intent)
         }
     }

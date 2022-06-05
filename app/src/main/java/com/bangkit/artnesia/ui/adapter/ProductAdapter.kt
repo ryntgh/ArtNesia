@@ -1,64 +1,70 @@
 package com.bangkit.artnesia.ui.adapter
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bangkit.artnesia.R
+import com.bangkit.artnesia.data.model.Product
 import com.bangkit.artnesia.data.model.ProductModel
 import com.bangkit.artnesia.databinding.ItemCoverBinding
 import com.bangkit.artnesia.databinding.ItemProductBinding
+import com.bangkit.artnesia.ui.activity.DetailProductActivity
 import com.bangkit.artnesia.ui.activity.ProductDetailActivity
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 
-class ProductAdapter (val activity: Activity): RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
+class ProductAdapter (
+    private val context: Context,
+    private val productList : ArrayList<Product>
+): RecyclerView.Adapter<ProductAdapter.MyViewHolder>() {
 
-    private var product = arrayListOf<ProductModel>()
+    private val limit = 8
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = ItemProductBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return ViewHolder(binding)
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): ProductAdapter.MyViewHolder {
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_product, parent, false)
+
+        return MyViewHolder(itemView)
+    }
+
+    override fun onBindViewHolder(holder: ProductAdapter.MyViewHolder, position: Int) {
+        val product: Product = productList[position]
+
+        Glide.with(context)
+            .load(product.image)
+            .centerCrop()
+            .into(holder.productImage)
+
+        holder.productName.text = product.title
+        holder.productPrice.text = "Rp "+product.price
+
+        holder.itemView.setOnClickListener {
+            val intent = Intent(context, DetailProductActivity::class.java)
+            intent.putExtra(DetailProductActivity.EXTRA_PRODUCT_ID, product.product_id)
+            intent.putExtra(DetailProductActivity.EXTRA_PRODUCT_OWNER_ID, product.user_id)
+            context.startActivity(intent)
+        }
     }
 
     override fun getItemCount(): Int {
-        return product.size
-    }
-
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(product[position])
-    }
-
-    fun setData(courseItems: List<ProductModel>) {
-        product.clear()
-        product.addAll(courseItems)
-    }
-
-    inner class ViewHolder(private val binding: ItemProductBinding): RecyclerView.ViewHolder(binding.root){
-        fun bind(product: ProductModel){
-            with(binding){
-                Glide.with(itemView.context)
-                    .load(product.productImage)
-                    .apply(RequestOptions().override(350, 550))
-                    .into(binding.productImageItemProduct)
-
-                binding.productRatingItemProduct.rating = product.productRating
-                binding.productNameItemProduct.text = product.productName
-                binding.productPriceItemProduct.text = "Rp " + product.productPrice
-
-                itemView.setOnClickListener {
-                    val i = Intent(activity, ProductDetailActivity::class.java)
-                    i.putExtra("NAME_KEY", product.productName)
-                    i.putExtra("PRICE_KEY", product.productPrice)
-                    i.putExtra("DESC_KEY", product.productDes)
-                    i.putExtra("RATING_KEY", product.productRating)
-                    i.putExtra("BRAND_KEY", product.productBrand)
-                    i.putExtra("IMAGE_KEY", product.productImage)
-                    i.putExtra("CATEGORY_KEY", product.productCategory)
-
-                    activity.startActivity(i)
-                }
-            }
+        return if (productList.size > limit) {
+            limit
+        } else {
+            productList.size
         }
+    }
+
+    class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val productImage : ImageView = itemView.findViewById(R.id.productImage_itemProduct)
+        val productName : TextView = itemView.findViewById(R.id.productName_itemProduct)
+        val productPrice : TextView = itemView.findViewById(R.id.productPrice_itemProduct)
     }
 }

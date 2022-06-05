@@ -6,12 +6,15 @@ import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.bangkit.artnesia.R
 import com.bangkit.artnesia.data.model.Product
 import com.bangkit.artnesia.databinding.ActivityDetailProductBinding
+import com.bangkit.artnesia.ui.adapter.ProductAdapter
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.*
 import java.io.IOException
 
 class DetailProductActivity : AppCompatActivity(), View.OnClickListener {
@@ -21,10 +24,16 @@ class DetailProductActivity : AppCompatActivity(), View.OnClickListener {
     private var mProductId: String = ""
     private val mFireStore = FirebaseFirestore.getInstance()
 
+    private lateinit var recProductAdapter: ProductAdapter
+    private lateinit var recProductList: ArrayList<Product>
+    private lateinit var recProductRV: RecyclerView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailProductBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        supportActionBar?.hide()
 
         if (intent.hasExtra(EXTRA_PRODUCT_ID)) {
             mProductId =
@@ -47,6 +56,14 @@ class DetailProductActivity : AppCompatActivity(), View.OnClickListener {
         //binding.addToCartProductDetailsPage.setOnClickListener(this)
 
         getProductDetailsFirestore(mProductId)
+
+        //getRecommendProduct()
+        if (intent.hasExtra(IS_MYPRODUCT)) {
+            binding.recLayout.visibility = View.GONE
+        }else{
+            binding.recLayout.visibility = View.VISIBLE
+            getRecommendProduct()
+        }
     }
 
     private fun getCurrentUserID(): String {
@@ -217,9 +234,53 @@ class DetailProductActivity : AppCompatActivity(), View.OnClickListener {
     }
      */
 
+    private fun getRecommendProduct(){
+        recProductRV = binding.RecomRecViewProductDetailsPage
+        recProductRV.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        recProductRV.setHasFixedSize(true)
+
+        recProductList = arrayListOf()
+
+        recProductAdapter  = ProductAdapter(this , recProductList)
+
+        recProductRV.adapter = recProductAdapter
+
+        getProductData(recProductList, recProductAdapter)
+    }
+
+    private fun getProductData(productlist : ArrayList<Product>, productAdapt: ProductAdapter) {
+        mFireStore.collection("products")
+            .addSnapshotListener(object : EventListener<QuerySnapshot> {
+                override fun onEvent(
+                    value: QuerySnapshot?,
+                    error: FirebaseFirestoreException?
+                ) {
+                    if (error!=null){
+                        Log.e("Firestore error", error.message.toString())
+                        return
+                    }
+
+                    for (dc: DocumentChange in value?.documentChanges!!){
+                        if (dc.type == DocumentChange.Type.ADDED){
+                            //productArrayList.add(dc.document.toObject(Product::class.java))
+                            val product = dc.document.toObject(Product::class.java)
+                            product.product_id = dc.document.id
+
+                            productlist.add(product)
+                        }
+                    }
+                    //randomize list
+                    productlist.shuffle()
+
+                    productAdapt.notifyDataSetChanged()
+                }
+            })
+    }
+
     companion object {
         const val EXTRA_PRODUCT_ID: String = "extra_product_id"
         const val EXTRA_PRODUCT_OWNER_ID: String = "extra_product_owner_id"
+        const val IS_MYPRODUCT: String = "is_myproduct"
         const val PRODUCTS: String = "products"
     }
 }

@@ -45,22 +45,24 @@
 
                 <ImageView
                     android:id="@+id/backIv_ProfileFrag"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:src="@drawable/ic_back"
+                    android:elevation="4dp"
                     app:tint="@color/white" />
 
                 <androidx.legacy.widget.Space
                     android:layout_weight="1"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"/>
+
                 <ImageView
                     android:id="@+id/searchIv_ProfileFrag"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:src="@drawable/ic_search"
-                    app:tint="@color/white"
-                    />
+                    android:elevation="4dp"
+                    app:tint="@color/white" />
 
             </LinearLayout>
 
@@ -170,11 +172,12 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/newLayout"
+                android:id="@+id/recLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_marginTop="20dp"
+                android:visibility="visible"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout6">
