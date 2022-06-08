@@ -18,6 +18,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ArtNesia">
         <activity
+            android:name=".ui.activity.LiteratureActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.activity.DetailProductActivity"
             android:exported="false" />
         <activity

@@ -1,5 +1,6 @@
 package com.bangkit.artnesia.ui.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -17,6 +18,8 @@ import com.bangkit.artnesia.data.model.CategoryModel
 import com.bangkit.artnesia.data.model.Literature
 import com.bangkit.artnesia.data.model.LiteratureModel
 import com.bangkit.artnesia.databinding.FragmentExploreBinding
+import com.bangkit.artnesia.ui.activity.LiteratureActivity
+import com.bangkit.artnesia.ui.activity.MyProductActivity
 import com.bangkit.artnesia.ui.adapter.ArticleAdapter
 import com.bangkit.artnesia.ui.adapter.CategoryAdapter
 import com.bangkit.artnesia.ui.adapter.ExploreLiteratureAdapter
@@ -71,6 +74,12 @@ class ExploreFragment : Fragment() {
         binding.rvCategory.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         binding.rvCategory.setHasFixedSize(true)
         binding.rvCategory.adapter = categoryAdapter
+
+        binding.tvViewAll.setOnClickListener {
+            activity?.let {
+                it.startActivity(Intent(it, LiteratureActivity::class.java))
+            }
+        }
     }
 
     private fun getLiterature(){
