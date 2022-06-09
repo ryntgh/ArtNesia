@@ -35,7 +35,6 @@ class ListLiteratureAdapter(
 
         Glide.with(context)
             .load(literature.image)
-            .centerCrop()
             .into(holder.literatureImage)
 
         holder.literatureName.text = literature.name

@@ -1,62 +1,128 @@
 package com.bangkit.artnesia.ui.activity
 
-import android.net.Uri
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.widget.ImageView
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bangkit.artnesia.R
-import com.bangkit.artnesia.data.local.ArticleData
-import com.bangkit.artnesia.data.model.ArticleModel
+import androidx.recyclerview.widget.RecyclerView
+import com.bangkit.artnesia.data.model.Article
 import com.bangkit.artnesia.databinding.ActivityDetailArticleBinding
 import com.bangkit.artnesia.ui.adapter.ArticleAdapter
 import com.bumptech.glide.Glide
+import com.google.firebase.firestore.*
+import java.io.IOException
 
 class DetailArticleActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailArticleBinding
-    private lateinit var articleAdapter: ArticleAdapter
+    private lateinit var mArticleDetail: Article
 
-    private fun getArticle(): List<ArticleModel> {
-        return ArticleData.generateArticle()
-    }
+    private var mArticleId: String = ""
+    private val mFireStore = FirebaseFirestore.getInstance()
+
+    private lateinit var articleAdapter: ArticleAdapter
+    private lateinit var articleList: ArrayList<Article>
+    private lateinit var articleRV: RecyclerView
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailArticleBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        articleAdapter = ArticleAdapter(this)
-        articleAdapter.setData(getArticle())
-
-        binding.rvArticleMore.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        binding.rvArticleMore.setHasFixedSize(true)
-        binding.rvArticleMore.adapter = articleAdapter
+        if (intent.hasExtra(EXTRA_ARTICLE_ID)) {
+            mArticleId =
+                intent.getStringExtra(EXTRA_ARTICLE_ID)!!
+        }
 
         if (supportActionBar != null)
             supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
-        val img: ImageView = findViewById(R.id.iv_article_detail)
-        val nameTxt: TextView = findViewById(R.id.tv_detail_articleTittle)
-        val summaryTxt: TextView = findViewById(R.id.tv_article_desc)
-        val moreText: TextView = findViewById(R.id.tv_article_another)
+        getArticleDetails(mArticleId)
 
-        val i = this.intent
+        getArticle()
+    }
 
-        val images = i.extras!!.getString("IMAGE_KEY")
-        val name = i.extras!!.getString("NAME_KEY")
-        val summary = i.extras!!.getString("SUMMARY_KEY")
-        moreText.text = getString(R.string.find_another)
-        title = "Detail $name"
+    private fun getArticleDetails(articleId: String) {
 
-        img.setImageURI(Uri.parse(images))
-        nameTxt.text = name
-        summaryTxt.text = summary
+        mFireStore.collection(ARTICLE)
+            .document(articleId)
+            .get()
+            .addOnSuccessListener { document ->
+                Log.e(this.javaClass.simpleName, document.toString())
 
-        Glide.with(this)
-            .load(images)
-            .into(img)
+                val artc = document.toObject(Article::class.java)!!
+                this.articleDetailsSuccess(artc)
+            }
+            .addOnFailureListener { e ->
+                Log.e(this.javaClass.simpleName, "Error while getting the article details.", e)
+            }
+    }
+
+    private fun articleDetailsSuccess(article: Article) {
+
+        mArticleDetail = article
+
+        loadArticlePicture(article.image, binding.ivArticleDetail)
+
+        binding.tvDetailArticleTittle.text = article.name
+        binding.tvArticleDesc.text = article.description
+
+    }
+
+    private fun loadArticlePicture(image: Any, imageView: ImageView) {
+        try {
+            Glide
+                .with(this)
+                .load(image)
+                .into(imageView)
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
+    }
+
+    private fun getArticle() {
+        articleRV = binding.rvArticleMore
+        articleRV.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        articleRV.setHasFixedSize(true)
+
+        articleList = arrayListOf()
+
+        articleAdapter = ArticleAdapter(this, articleList)
+
+        articleRV.adapter = articleAdapter
+
+        getArticleData()
+    }
+
+    private fun getArticleData() {
+        mFireStore.collection("article")
+            .addSnapshotListener(object : EventListener<QuerySnapshot> {
+                @SuppressLint("NotifyDataSetChanged")
+                override fun onEvent(
+                    value: QuerySnapshot?,
+                    error: FirebaseFirestoreException?
+                ) {
+                    if (error != null) {
+                        Log.e("Firestore error", error.message.toString())
+                        return
+                    }
+
+                    for (dc: DocumentChange in value?.documentChanges!!) {
+                        if (dc.type == DocumentChange.Type.ADDED) {
+                            val artc = dc.document.toObject(Article::class.java)
+                            artc.article_id = dc.document.id
+
+                            articleList.add(artc)
+                        }
+                    }
+                    articleList.shuffle()
+
+                    articleAdapter.notifyDataSetChanged()
+                }
+            })
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -67,5 +133,10 @@ class DetailArticleActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         finish()
+    }
+
+    companion object {
+        const val EXTRA_ARTICLE_ID: String = "extra_article_id"
+        const val ARTICLE: String = "article"
     }
 }

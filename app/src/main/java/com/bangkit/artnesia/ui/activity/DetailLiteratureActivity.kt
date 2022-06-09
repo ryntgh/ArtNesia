@@ -1,20 +1,15 @@
 package com.bangkit.artnesia.ui.activity
 
-import android.net.Uri
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import android.widget.ImageView
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.bangkit.artnesia.R
-import com.bangkit.artnesia.data.local.LiteratureData
 import com.bangkit.artnesia.data.model.Literature
-import com.bangkit.artnesia.data.model.LiteratureModel
 import com.bangkit.artnesia.databinding.ActivityDetailLiteratureBinding
-import com.bangkit.artnesia.ui.adapter.ExploreLiteratureAdapter
 import com.bangkit.artnesia.ui.adapter.LiteratureAdapter
 import com.bumptech.glide.Glide
 import com.google.firebase.firestore.*
@@ -30,7 +25,6 @@ class DetailLiteratureActivity : AppCompatActivity() {
     private lateinit var literatureAdapter: LiteratureAdapter
     private lateinit var literatureList: ArrayList<Literature>
     private lateinit var literatureRV: RecyclerView
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,20 +53,20 @@ class DetailLiteratureActivity : AppCompatActivity() {
                 Log.e(this.javaClass.simpleName, document.toString())
 
                 val lit = document.toObject(Literature::class.java)!!
-                this.productDetailsSuccess(lit)
+                this.literatureDetailsSuccess(lit)
             }
             .addOnFailureListener { e ->
 
 
-                Log.e(this.javaClass.simpleName, "Error while getting the product details.", e)
+                Log.e(this.javaClass.simpleName, "Error while getting the literature details.", e)
             }
     }
 
-    private fun productDetailsSuccess(literature: Literature) {
+    private fun literatureDetailsSuccess(literature: Literature) {
 
         mLiteratureDetail = literature
 
-        loadProductPicture(literature.image, binding.imageView2)
+        loadLiteraturePicture(literature.image, binding.imageView2)
 
         binding.tvDetailClasssification.text = literature.classification
         binding.tvDetailArtName.text = literature.name
@@ -81,26 +75,26 @@ class DetailLiteratureActivity : AppCompatActivity() {
 
     }
 
-    private fun loadProductPicture(image: Any, imageView: ImageView) {
+    private fun loadLiteraturePicture(image: Any, imageView: ImageView) {
         try {
             Glide
                 .with(this)
                 .load(image)
-                .centerCrop()
                 .into(imageView)
         } catch (e: IOException) {
             e.printStackTrace()
         }
     }
 
-    private fun getLiterature(){
+    private fun getLiterature() {
         literatureRV = binding.rvLiteratureMore
-        literatureRV.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        literatureRV.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         literatureRV.setHasFixedSize(true)
 
         literatureList = arrayListOf()
 
-        literatureAdapter  = LiteratureAdapter(this , literatureList)
+        literatureAdapter = LiteratureAdapter(this, literatureList)
 
         literatureRV.adapter = literatureAdapter
 
@@ -110,25 +104,25 @@ class DetailLiteratureActivity : AppCompatActivity() {
     private fun getLiteratureData() {
         mFireStore.collection("literature")
             .addSnapshotListener(object : EventListener<QuerySnapshot> {
+                @SuppressLint("NotifyDataSetChanged")
                 override fun onEvent(
                     value: QuerySnapshot?,
                     error: FirebaseFirestoreException?
                 ) {
-                    if (error!=null){
+                    if (error != null) {
                         Log.e("Firestore error", error.message.toString())
                         return
                     }
 
-                    for (dc: DocumentChange in value?.documentChanges!!){
-                        if (dc.type == DocumentChange.Type.ADDED){
-                            //productArrayList.add(dc.document.toObject(Product::class.java))
+                    for (dc: DocumentChange in value?.documentChanges!!) {
+                        if (dc.type == DocumentChange.Type.ADDED) {
                             val lit = dc.document.toObject(Literature::class.java)
                             lit.literature_id = dc.document.id
 
                             literatureList.add(lit)
                         }
                     }
-                    //randomize list
+
                     literatureList.shuffle()
 
                     literatureAdapter.notifyDataSetChanged()

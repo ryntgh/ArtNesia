@@ -25,13 +25,13 @@
         <ImageView
             android:id="@+id/iv_article_detail"
             android:layout_width="wrap_content"
-            android:layout_height="200dp"
-            android:scaleType="centerCrop"
+            android:layout_height="350dp"
+            android:contentDescription="@string/iv_literature_detail"
+            android:scaleType="fitCenter"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@tools:sample/backgrounds/scenic[2]"
-            android:contentDescription="@string/iv_literature_detail" />
+            tools:srcCompat="@tools:sample/backgrounds/scenic[2]" />
 
         <TextView
             android:id="@+id/tv_detail_articleTittle"

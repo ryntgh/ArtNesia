@@ -13,6 +13,7 @@ import com.bangkit.artnesia.ui.utils.rotateBitmap
 import org.tensorflow.lite.support.image.TensorImage
 import org.tensorflow.lite.support.model.Model
 import java.io.File
+import java.util.*
 
 class DetectionActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetectionBinding
@@ -57,19 +58,27 @@ class DetectionActivity : AppCompatActivity() {
             .setDevice(Model.Device.GPU)
             .build()
 
-        val birdsModel = ArtNesiaModel.newInstance(this, options)
+        val artModel = ArtNesiaModel.newInstance(this, options)
 
         val newBitmap = bitmap.copy(Bitmap.Config.ARGB_8888, true)
         val tfimage = TensorImage.fromBitmap(newBitmap)
 
-        val outputs = birdsModel.process(tfimage)
+        val outputs = artModel.process(tfimage)
             .probabilityAsCategoryList.apply {
                 sortByDescending { it.score }
             }
 
         val highProbabilityOutput = outputs[0]
 
-        binding.tvResult.text = highProbabilityOutput.label
+        val resultStr = highProbabilityOutput.label.replace("_", " ")
+        val splitStr: String = resultStr.split(' ').joinToString(" ") { it ->
+            it.replaceFirstChar {
+            if (it.isLowerCase()) it.titlecase(
+                Locale.getDefault()
+            ) else it.toString()
+        } }
+
+        binding.tvResult.text = splitStr
         Log.i("TAG", "outputGenerator: $highProbabilityOutput")
     }
 }

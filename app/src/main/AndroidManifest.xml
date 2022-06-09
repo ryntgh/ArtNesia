@@ -55,7 +55,8 @@
             android:exported="false" />
         <activity
             android:name=".ui.activity.DetailLiteratureActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.DetailLiterature"/>
         <activity
             android:name=".ui.activity.SplashActivity"
             android:exported="true">

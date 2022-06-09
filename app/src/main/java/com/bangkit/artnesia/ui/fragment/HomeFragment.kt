@@ -1,5 +1,6 @@
 package com.bangkit.artnesia.ui.fragment
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -9,12 +10,8 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.bangkit.artnesia.R
-import com.bangkit.artnesia.data.local.ArticleData
-import com.bangkit.artnesia.data.local.LiteratureData
-import com.bangkit.artnesia.data.model.ArticleModel
+import com.bangkit.artnesia.data.model.Article
 import com.bangkit.artnesia.data.model.Literature
-import com.bangkit.artnesia.data.model.LiteratureModel
 import com.bangkit.artnesia.databinding.FragmentHomeBinding
 import com.bangkit.artnesia.ui.adapter.ArticleAdapter
 import com.bangkit.artnesia.ui.adapter.LiteratureAdapter
@@ -26,7 +23,6 @@ class HomeFragment : Fragment() {
 
     private var _binding : FragmentHomeBinding? = null
     private val binding get() = _binding as FragmentHomeBinding
-
     private val mFireStore = FirebaseFirestore.getInstance()
 
     private lateinit var literatureAdapter: LiteratureAdapter
@@ -34,6 +30,8 @@ class HomeFragment : Fragment() {
     private lateinit var literatureRV: RecyclerView
 
     private lateinit var articleAdapter: ArticleAdapter
+    private lateinit var articleList: ArrayList<Article>
+    private lateinit var articleRV: RecyclerView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -57,13 +55,7 @@ class HomeFragment : Fragment() {
         binding.isHome.setImageList(slideModel , ScaleTypes.CENTER_CROP)
 
         getLiterature()
-
-        articleAdapter = ArticleAdapter(requireActivity())
-        articleAdapter.setData(getArticle())
-
-        binding.articleRecView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        binding.articleRecView.setHasFixedSize(true)
-        binding.articleRecView.adapter = articleAdapter
+        getArticle()
     }
 
     private fun getLiterature(){
@@ -80,13 +72,24 @@ class HomeFragment : Fragment() {
         getLiteratureData()
     }
 
-    private fun getArticle(): List<ArticleModel>{
-        return ArticleData.generateArticle()
+    private fun getArticle() {
+        articleRV = binding.articleRecView
+        articleRV.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        articleRV.setHasFixedSize(true)
+
+        articleList = arrayListOf()
+
+        articleAdapter = ArticleAdapter(requireActivity(), articleList)
+
+        articleRV.adapter = articleAdapter
+
+        getArticleData()
     }
 
     private fun getLiteratureData() {
         mFireStore.collection("literature")
             .addSnapshotListener(object : EventListener<QuerySnapshot> {
+                @SuppressLint("NotifyDataSetChanged")
                 override fun onEvent(
                     value: QuerySnapshot?,
                     error: FirebaseFirestoreException?
@@ -98,17 +101,43 @@ class HomeFragment : Fragment() {
 
                     for (dc: DocumentChange in value?.documentChanges!!){
                         if (dc.type == DocumentChange.Type.ADDED){
-                            //productArrayList.add(dc.document.toObject(Product::class.java))
                             val lit = dc.document.toObject(Literature::class.java)
                             lit.literature_id = dc.document.id
 
                             literatureList.add(lit)
                         }
                     }
-                    //randomize list
                     literatureList.shuffle()
 
                     literatureAdapter.notifyDataSetChanged()
+                }
+            })
+    }
+
+    private fun getArticleData() {
+        mFireStore.collection("article")
+            .addSnapshotListener(object : EventListener<QuerySnapshot> {
+                @SuppressLint("NotifyDataSetChanged")
+                override fun onEvent(
+                    value: QuerySnapshot?,
+                    error: FirebaseFirestoreException?
+                ) {
+                    if (error != null) {
+                        Log.e("Firestore error", error.message.toString())
+                        return
+                    }
+
+                    for (dc: DocumentChange in value?.documentChanges!!) {
+                        if (dc.type == DocumentChange.Type.ADDED) {
+                            val artc = dc.document.toObject(Article::class.java)
+                            artc.article_id = dc.document.id
+
+                            articleList.add(artc)
+                        }
+                    }
+                    articleList.shuffle()
+
+                    articleAdapter.notifyDataSetChanged()
                 }
             })
     }
