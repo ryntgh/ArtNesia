@@ -46,7 +46,8 @@
             android:exported="false" />
         <activity
             android:name=".ui.activity.DetailArticleActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.DetailActivity"/>
         <activity
             android:name=".ui.activity.DetectionActivity"
             android:exported="false" />
@@ -65,7 +66,7 @@
         <activity
             android:name=".ui.activity.DetailLiteratureActivity"
             android:exported="false"
-            android:theme="@style/Theme.DetailLiterature" />
+            android:theme="@style/Theme.DetailActivity"/>
         <activity
             android:name=".ui.activity.SplashActivity"
             android:exported="true">

@@ -34,6 +34,7 @@ class DetectionActivity : AppCompatActivity() {
                 BitmapFactory.decodeFile(imageCamera.path),
                 isBackCamera
             )
+
             binding.ivPlaceholder.setImageBitmap(result)
             outputGenerator(result)
         }
@@ -73,12 +74,17 @@ class DetectionActivity : AppCompatActivity() {
         val resultStr = highProbabilityOutput.label.replace("_", " ")
         val splitStr: String = resultStr.split(' ').joinToString(" ") { it ->
             it.replaceFirstChar {
-            if (it.isLowerCase()) it.titlecase(
-                Locale.getDefault()
-            ) else it.toString()
-        } }
+                if (it.isLowerCase()) it.titlecase(
+                    Locale.getDefault()
+                ) else it.toString()
+            }
+        }
+        val score = highProbabilityOutput.score * 100
+        val scoreFormat = String.format("%.1f", score)
+        val percentageStr = "( $scoreFormat %)"
 
         binding.tvResult.text = splitStr
+        binding.tvPercentage.text = percentageStr
         Log.i("TAG", "outputGenerator: $highProbabilityOutput")
     }
 }

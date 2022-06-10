@@ -1,5 +1,6 @@
 package com.bangkit.artnesia.ui.activity
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -48,6 +49,7 @@ class LiteratureActivity : AppCompatActivity() {
     private fun getLiteratureData() {
         mFireStore.collection("literature")
             .addSnapshotListener(object : EventListener<QuerySnapshot> {
+                @SuppressLint("NotifyDataSetChanged")
                 override fun onEvent(
                     value: QuerySnapshot?,
                     error: FirebaseFirestoreException?
@@ -59,14 +61,12 @@ class LiteratureActivity : AppCompatActivity() {
 
                     for (dc: DocumentChange in value?.documentChanges!!) {
                         if (dc.type == DocumentChange.Type.ADDED) {
-                            //productArrayList.add(dc.document.toObject(Product::class.java))
                             val lit = dc.document.toObject(Literature::class.java)
                             lit.literature_id = dc.document.id
 
                             literatureList.add(lit)
                         }
                     }
-                    //randomize list
                     literatureList.shuffle()
 
                     literatureAdapter.notifyDataSetChanged()
