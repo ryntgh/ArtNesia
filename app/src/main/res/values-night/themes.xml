@@ -14,10 +14,10 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="Theme.DetailLiterature" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.DetailActivity" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/secondary</item>
-        <item name="colorPrimaryVariant">@color/secondary</item>
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryVariant">@color/primary</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/primary_light</item>

@@ -5,6 +5,8 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -118,11 +120,14 @@ class CameraActivity : AppCompatActivity() {
 
                 override fun onImageSaved(output: ImageCapture.OutputFileResults) {
                     AlertDialog.Builder(this@CameraActivity).apply {
+
                         result = BitmapFactory.decodeFile(photoFile.path)
                         result = rotateBitmap(
                             BitmapFactory.decodeFile(photoFile.path),
                             cameraSelector == CameraSelector.DEFAULT_BACK_CAMERA
                         )
+                        val drawableResult: Drawable = BitmapDrawable(resources, result)
+
                         binding.apply {
                             galleryImagePreview.setImageBitmap(result)
                             galleryImagePreview.visibility = View.VISIBLE
@@ -131,6 +136,7 @@ class CameraActivity : AppCompatActivity() {
                             galleryButton.visibility = View.INVISIBLE
                             galleryImageUse.visibility = View.INVISIBLE
                         }
+
                         setCancelable(false)
                         setTitle("Success!")
                         setMessage("Image taken successfully, use this image?")
@@ -154,7 +160,7 @@ class CameraActivity : AppCompatActivity() {
                             startActivity(intent)
                             finish()
                         }
-                        setIcon(R.drawable.logo)
+                        setIcon(drawableResult)
                         create()
                         show()
                     }
