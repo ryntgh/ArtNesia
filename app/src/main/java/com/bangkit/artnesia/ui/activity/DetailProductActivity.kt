@@ -1,14 +1,17 @@
 package com.bangkit.artnesia.ui.activity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bangkit.artnesia.R
+import com.bangkit.artnesia.data.model.Cart
 import com.bangkit.artnesia.data.model.Product
 import com.bangkit.artnesia.databinding.ActivityDetailProductBinding
 import com.bangkit.artnesia.ui.adapter.ProductAdapter
@@ -53,11 +56,11 @@ class DetailProductActivity : AppCompatActivity(), View.OnClickListener {
             binding.linearLayout7.visibility = View.VISIBLE
         }
 
-        //binding.addToCartProductDetailsPage.setOnClickListener(this)
+        binding.addToCartProductDetailsPage.setOnClickListener(this)
+        binding.goToCartProductDetailsPage.setOnClickListener(this)
 
         getProductDetailsFirestore(mProductId)
 
-        //getRecommendProduct()
         if (intent.hasExtra(IS_MYPRODUCT)) {
             binding.recLayout.visibility = View.GONE
         }else{
@@ -80,33 +83,51 @@ class DetailProductActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
         if (v != null) {
             when (v.id) {
-
                 R.id.addToCart_ProductDetailsPage -> {
-                    //addToCart()
+                    addToCart()
+                }
+
+                R.id.goToCart_ProductDetailsPage -> {
+                    startActivity(Intent(this, CartActivity::class.java))
                 }
 
             }
         }
     }
 
-    /*
     private fun addToCart() {
 
         val addToCart = Cart(
-            FirestoreClass().getCurrentUserID(),
+            getCurrentUserID(),
             mProductId,
             mProductDetails.title,
             mProductDetails.price,
             mProductDetails.image,
-            Constants.DEFAULT_CART_QUANTITY
+            DEFAULT_CART_QUANTITY,
+            "",
+            mProductDetails.user_id
+
         )
 
-        // Show the progress dialog
-        showProgressDialog(resources.getString(R.string.please_wait))
-
-        FirestoreClass().addCartItems(this@ProductDetailsActivity, addToCart)
+        addCartItems(addToCart)
     }
-     */
+
+    private fun addCartItems(addToCart: Cart) {
+
+        mFireStore.collection("cart_items")
+            .document()
+            .set(addToCart, SetOptions.merge())
+            .addOnSuccessListener {
+                this.addToCartSuccess()
+            }
+            .addOnFailureListener { e ->
+                Log.e(
+                    this.javaClass.simpleName,
+                    "Error while creating the document for cart item.",
+                    e
+                )
+            }
+    }
 
     private fun getProductDetailsFirestore(productId: String) {
         mFireStore.collection(PRODUCTS)
@@ -147,92 +168,65 @@ class DetailProductActivity : AppCompatActivity(), View.OnClickListener {
                 )
             )
         }
-        /*
         else{
-
-            // There is no need to check the cart list if the product owner himself is seeing the product details.
-            if (getCurrentUserID() == product.user_id) {
-                // Hide Progress dialog.
-                hideProgressDialog()
-            } else {
-                FirestoreClass().checkIfItemExistInCart(this@ProductDetailsActivity, mProductId)
+            if (getCurrentUserID() != product.user_id) {
+                checkIfItemExistInCart(mProductId)
             }
         }
-         */
+
     }
 
     private fun loadProductPicture(image: Any, imageView: ImageView) {
         try {
-            // Load the user image in the ImageView.
             Glide
                 .with(this)
-                .load(image) // Uri or URL of the image
-                .centerCrop() // Scale type of the image.
-                .into(imageView) // the view in which the image will be loaded.
+                .load(image)
+                .centerCrop()
+                .into(imageView)
         } catch (e: IOException) {
             e.printStackTrace()
         }
     }
 
-    /*
-    fun productExistsInCart() {
 
-        // Hide the progress dialog.
-        hideProgressDialog()
-
-        // Hide the AddToCart button if the item is already in the cart.
-        btn_add_to_cart.visibility = View.GONE
-        // Show the GoToCart button if the item is already in the cart. User can update the quantity from the cart list screen if he wants.
-        btn_go_to_cart.visibility = View.VISIBLE
+    private fun productExistsInCart() {
+        binding.addToCartProductDetailsPage.visibility = View.GONE
+        binding.goToCartProductDetailsPage.visibility = View.VISIBLE
     }
 
-     */
-
-    /*
-    fun addToCartSuccess() {
+    private fun addToCartSuccess() {
         Toast.makeText(
-            this@ProductDetailsActivity,
-            resources.getString(R.string.success_message_item_added_to_cart),
+            this,
+            "Product is added to your bag",
             Toast.LENGTH_SHORT
         ).show()
 
-        // Hide the AddToCart button if the item is already in the cart.
-        btn_add_to_cart.visibility = View.GONE
-        // Show the GoToCart button if the item is already in the cart. User can update the quantity from the cart list screen if he wants.
-        btn_go_to_cart.visibility = View.VISIBLE
+        binding.addToCartProductDetailsPage.visibility = View.GONE
+        binding.goToCartProductDetailsPage.visibility = View.VISIBLE
     }
-     */
 
-    /*
-    fun checkIfItemExistInCart(activity: ProductDetailsActivity, productId: String) {
+    private fun checkIfItemExistInCart(productId: String) {
 
-        mFireStore.collection(Constants.CART_ITEMS)
-            .whereEqualTo(Constants.USER_ID, getCurrentUserID())
-            .whereEqualTo(Constants.PRODUCT_ID, productId)
+        mFireStore.collection("cart_items")
+            .whereEqualTo(USER_ID, getCurrentUserID())
+            .whereEqualTo(PRODUCT_ID, productId)
             .get()
             .addOnSuccessListener { document ->
 
-                Log.e(activity.javaClass.simpleName, document.documents.toString())
+                Log.e(this.javaClass.simpleName, document.documents.toString())
 
-                // If the document size is greater than 1 it means the product is already added to the cart.
                 if (document.documents.size > 0) {
-                    activity.productExistsInCart()
-                } else {
-                    activity.hideProgressDialog()
+                    this.productExistsInCart()
                 }
             }
             .addOnFailureListener { e ->
-                // Hide the progress dialog if there is an error.
-                activity.hideProgressDialog()
-
                 Log.e(
-                    activity.javaClass.simpleName,
+                    this.javaClass.simpleName,
                     "Error while checking the existing cart list.",
                     e
                 )
             }
     }
-     */
 
     private fun getRecommendProduct(){
         recProductRV = binding.RecomRecViewProductDetailsPage
@@ -282,5 +276,8 @@ class DetailProductActivity : AppCompatActivity(), View.OnClickListener {
         const val EXTRA_PRODUCT_OWNER_ID: String = "extra_product_owner_id"
         const val IS_MYPRODUCT: String = "is_myproduct"
         const val PRODUCTS: String = "products"
+        const val DEFAULT_CART_QUANTITY: String = "1"
+        const val USER_ID: String = "user_id"
+        const val PRODUCT_ID: String = "product_id"
     }
 }

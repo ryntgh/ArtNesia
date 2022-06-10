@@ -73,10 +73,6 @@ class AddAddressActivity : AppCompatActivity() {
         }
     }
 
-
-    /**
-     * A function to validate the address input entries.
-     */
     private fun validateData(): Boolean {
         return when {
 
@@ -111,12 +107,7 @@ class AddAddressActivity : AppCompatActivity() {
         }
     }
 
-    /**
-     * A function to save the address to the cloud firestore.
-     */
     private fun saveAddressToFirestore() {
-
-        // Here we get the text from editText and trim the space
         val fullName: String = binding.etFullName.text.toString().trim { it <= ' ' }
         val phoneNumber: String = binding.etPhoneNumber.text.toString().trim { it <= ' ' }
         val address: String = binding.etAddress.text.toString().trim { it <= ' ' }
@@ -151,11 +142,9 @@ class AddAddressActivity : AppCompatActivity() {
         }
     }
 
-    fun getCurrentUserID(): String {
-        // An Instance of currentUser using FirebaseAuth
+    private fun getCurrentUserID(): String {
         val currentUser = FirebaseAuth.getInstance().currentUser
 
-        // A variable to assign the currentUserId if it is not null or else it will be blank.
         var currentUserID = ""
         if (currentUser != null) {
             currentUserID = currentUser.uid
@@ -164,14 +153,11 @@ class AddAddressActivity : AppCompatActivity() {
         return currentUserID
     }
 
-    fun updateAddress(addressInfo: Address, addressId: String) {
+    private fun updateAddress(addressInfo: Address, addressId: String) {
         mFireStore.collection(ADDRESSES)
             .document(addressId)
-            // Here the userInfo are Field and the SetOption is set to merge. It is for if we wants to merge
             .set(addressInfo, SetOptions.merge())
             .addOnSuccessListener {
-
-                // Here call a function of base activity for transferring the result to it.
                 this.addUpdateAddressSuccess()
             }
             .addOnFailureListener { e ->
@@ -183,16 +169,11 @@ class AddAddressActivity : AppCompatActivity() {
             }
     }
 
-    fun addAddress(addressInfo: Address) {
-
-        // Collection name address.
+    private fun addAddress(addressInfo: Address) {
         mFireStore.collection(ADDRESSES)
             .document()
-            // Here the userInfo are Field and the SetOption is set to merge. It is for if we wants to merge
             .set(addressInfo, SetOptions.merge())
             .addOnSuccessListener {
-
-                // Here call a function of base activity for transferring the result to it.
                 this.addUpdateAddressSuccess()
             }
             .addOnFailureListener { e ->
@@ -204,10 +185,7 @@ class AddAddressActivity : AppCompatActivity() {
             }
     }
 
-    /**
-     * A function to notify the success result of address saved.
-     */
-    fun addUpdateAddressSuccess() {
+    private fun addUpdateAddressSuccess() {
         val notifySuccessMessage: String = if (mAddressDetails != null && mAddressDetails!!.id.isNotEmpty()) {
             "Update successfully"
         } else {
@@ -224,7 +202,7 @@ class AddAddressActivity : AppCompatActivity() {
         finish()
     }
 
-    fun showErrorSnackBar(message: String, errorMessage: Boolean) {
+    private fun showErrorSnackBar(message: String, errorMessage: Boolean) {
         val snackBar =
             Snackbar.make(findViewById(android.R.id.content), message, Snackbar.LENGTH_LONG)
         val snackBarView = snackBar.view

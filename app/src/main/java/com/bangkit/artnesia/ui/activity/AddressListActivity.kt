@@ -115,7 +115,7 @@ class AddressListActivity : AppCompatActivity() {
             }
     }
 
-    fun deleteAddressSuccess() {
+    private fun deleteAddressSuccess() {
         Toast.makeText(
             this,
             "Delete Success",

@@ -1,5 +1,6 @@
 package com.bangkit.artnesia.ui.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -15,6 +16,7 @@ import com.bangkit.artnesia.data.model.Product
 import com.bangkit.artnesia.data.model.ProductModel
 import com.bangkit.artnesia.databinding.FragmentHomeBinding
 import com.bangkit.artnesia.databinding.FragmentShopBinding
+import com.bangkit.artnesia.ui.activity.CartActivity
 import com.bangkit.artnesia.ui.adapter.CoverProductAdapter
 import com.bangkit.artnesia.ui.adapter.ProductAdapter
 import com.denzcoskun.imageslider.constants.ScaleTypes
@@ -41,6 +43,13 @@ class ShopFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentShopBinding.inflate(layoutInflater , container , false)
+
+        binding.ibBag.setOnClickListener {
+            activity?.let {
+                it.startActivity(Intent(it, CartActivity::class.java))
+            }
+        }
+
         return binding.root
     }
 

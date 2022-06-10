@@ -18,6 +18,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ArtNesia">
         <activity
+            android:name=".ui.activity.CartActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.activity.AddressListActivity"
             android:exported="false" />
         <activity
