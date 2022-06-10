@@ -18,6 +18,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ArtNesia">
         <activity
+            android:name=".ui.activity.HistoryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activity.MyOrderActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activity.OrderListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activity.CheckoutActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.activity.CartActivity"
             android:exported="false" />
         <activity

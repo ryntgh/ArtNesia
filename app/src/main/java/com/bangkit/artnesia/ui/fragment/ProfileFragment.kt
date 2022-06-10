@@ -11,10 +11,7 @@ import android.widget.ImageView
 import com.bangkit.artnesia.R
 import com.bangkit.artnesia.data.model.User
 import com.bangkit.artnesia.databinding.FragmentProfileBinding
-import com.bangkit.artnesia.ui.activity.AddressListActivity
-import com.bangkit.artnesia.ui.activity.LoginActivity
-import com.bangkit.artnesia.ui.activity.MyProductActivity
-import com.bangkit.artnesia.ui.activity.UserProfileActivity
+import com.bangkit.artnesia.ui.activity.*
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -40,9 +37,21 @@ class ProfileFragment : Fragment() {
             }
         }
 
+        binding.cvMyOrder.setOnClickListener {
+            activity?.let {
+                it.startActivity(Intent(it, OrderListActivity::class.java))
+            }
+        }
+
         binding.cvAddress.setOnClickListener {
             activity?.let {
                 it.startActivity(Intent(it, AddressListActivity::class.java))
+            }
+        }
+
+        binding.cvHistory.setOnClickListener {
+            activity?.let {
+                it.startActivity(Intent(it, HistoryActivity::class.java))
             }
         }
 

@@ -14,6 +14,8 @@ import com.bangkit.artnesia.R
 import com.bangkit.artnesia.data.model.Address
 import com.bangkit.artnesia.ui.activity.AddAddressActivity
 import com.bangkit.artnesia.ui.activity.AddressListActivity
+import com.bangkit.artnesia.ui.activity.CheckoutActivity
+import com.bangkit.artnesia.ui.activity.CheckoutActivity.Companion.EXTRA_SELECTED_ADDRESS
 
 class AddressListAdapter (
     private val context: Context,
@@ -45,9 +47,9 @@ class AddressListAdapter (
             holder.editButton.visibility = View.GONE
 
             holder.itemView.setOnClickListener {
-                //val intent = Intent(context, CheckoutActivity::class.java)
-                //intent.putExtra(EXTRA_SELECTED_ADDRESS, address)
-                //context.startActivity(intent)
+                val intent = Intent(context, CheckoutActivity::class.java)
+                intent.putExtra(EXTRA_SELECTED_ADDRESS, address)
+                context.startActivity(intent)
             }
         }else{
             holder.deleteButton.visibility = View.VISIBLE
