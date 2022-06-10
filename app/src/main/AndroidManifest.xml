@@ -18,6 +18,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ArtNesia">
         <activity
+            android:name=".ui.activity.AddressListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activity.AddAddressActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.activity.LiteratureActivity"
             android:exported="false" />
         <activity
@@ -56,7 +62,7 @@
         <activity
             android:name=".ui.activity.DetailLiteratureActivity"
             android:exported="false"
-            android:theme="@style/Theme.DetailLiterature"/>
+            android:theme="@style/Theme.DetailLiterature" />
         <activity
             android:name=".ui.activity.SplashActivity"
             android:exported="true">

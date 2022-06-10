@@ -11,6 +11,7 @@ import android.widget.ImageView
 import com.bangkit.artnesia.R
 import com.bangkit.artnesia.data.model.User
 import com.bangkit.artnesia.databinding.FragmentProfileBinding
+import com.bangkit.artnesia.ui.activity.AddressListActivity
 import com.bangkit.artnesia.ui.activity.LoginActivity
 import com.bangkit.artnesia.ui.activity.MyProductActivity
 import com.bangkit.artnesia.ui.activity.UserProfileActivity
@@ -36,6 +37,12 @@ class ProfileFragment : Fragment() {
         binding.cvMyproduct.setOnClickListener {
             activity?.let {
                 it.startActivity(Intent(it, MyProductActivity::class.java))
+            }
+        }
+
+        binding.cvAddress.setOnClickListener {
+            activity?.let {
+                it.startActivity(Intent(it, AddressListActivity::class.java))
             }
         }
 
