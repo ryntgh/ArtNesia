@@ -167,7 +167,7 @@ class CheckoutActivity : AppCompatActivity() {
 
         // Prepare the History details
         for (cart in cartList) {
-            val soldProduct = History(
+            val history = History(
                 getCurrentUserID(),
                 cart.title,
                 cart.price,
@@ -182,6 +182,27 @@ class CheckoutActivity : AppCompatActivity() {
             )
 
             val documentReference = mFireStore.collection("history")
+                .document()
+            writeBatch.set(documentReference, history)
+        }
+
+        for (cart in cartList) {
+            val soldProduct = SoldProduct(
+                getCurrentUserID(),
+                cart.title,
+                cart.price,
+                cart.cart_quantity,
+                cart.image,
+                cart.seller_id,
+                order.title,
+                order.order_datetime,
+                order.sub_total_amount,
+                order.shipping_charge,
+                order.total_amount,
+                order.address
+            )
+
+            val documentReference = mFireStore.collection("sold_product")
                 .document()
             writeBatch.set(documentReference, soldProduct)
         }

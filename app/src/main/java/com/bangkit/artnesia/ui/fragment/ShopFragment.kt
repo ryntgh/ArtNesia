@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bangkit.artnesia.data.model.Product
 import com.bangkit.artnesia.databinding.FragmentShopBinding
 import com.bangkit.artnesia.ui.activity.CartActivity
+import com.bangkit.artnesia.ui.activity.SearchProductActivity
 import com.bangkit.artnesia.ui.adapter.ProductAdapter
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
@@ -42,6 +43,23 @@ class ShopFragment : Fragment() {
         binding.ibBag.setOnClickListener {
             activity?.let {
                 it.startActivity(Intent(it, CartActivity::class.java))
+            }
+        }
+
+        binding.ibSearch.setOnClickListener {
+            activity?.let {
+                it.startActivity(Intent(it, SearchProductActivity::class.java))
+            }
+        }
+
+        binding.productGroupViewAll.setOnClickListener {
+            activity?.let {
+                it.startActivity(Intent(it, SearchProductActivity::class.java))
+            }
+        }
+        binding.saleProductViewAll.setOnClickListener {
+            activity?.let {
+                it.startActivity(Intent(it, SearchProductActivity::class.java))
             }
         }
 

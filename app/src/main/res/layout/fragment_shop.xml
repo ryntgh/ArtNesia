@@ -21,6 +21,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:layout_marginTop="24dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -177,7 +178,7 @@
 
                 <View
                     android:layout_width="1dp"
-                    android:layout_height="80dp"/>
+                    android:layout_height="100dp" />
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -187,22 +188,48 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/background"
+        android:padding="8dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:gravity="end"
-        android:padding="10dp"
-        android:background="@null">
+        app:layout_constraintTop_toTopOf="parent">
 
-        <ImageButton
-            android:id="@+id/ib_bag"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/ic_shopping"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:background="@null"
-            android:elevation="4dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="ArtNesia Market"
+                android:textColor="@color/secondary"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <androidx.legacy.widget.Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:id="@+id/ib_search"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="4dp"
+                android:background="@null"
+                android:elevation="4dp"
+                android:src="@drawable/ic_search"
+                app:tint="@color/secondary" />
+
+            <ImageView
+                android:id="@+id/ib_bag"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@null"
+                android:elevation="4dp"
+                android:src="@drawable/ic_shopping"
+                app:tint="@color/secondary"/>
+        </LinearLayout>
     </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

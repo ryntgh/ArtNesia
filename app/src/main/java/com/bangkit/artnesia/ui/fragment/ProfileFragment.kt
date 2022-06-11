@@ -37,6 +37,12 @@ class ProfileFragment : Fragment() {
             }
         }
 
+        binding.cvSalesResult.setOnClickListener {
+            activity?.let {
+                it.startActivity(Intent(it, SoldProductActivity::class.java))
+            }
+        }
+
         binding.cvMyOrder.setOnClickListener {
             activity?.let {
                 it.startActivity(Intent(it, OrderListActivity::class.java))

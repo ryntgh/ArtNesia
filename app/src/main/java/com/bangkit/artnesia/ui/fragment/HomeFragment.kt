@@ -12,11 +12,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bangkit.artnesia.data.model.Article
 import com.bangkit.artnesia.data.model.Literature
+import com.bangkit.artnesia.data.model.User
 import com.bangkit.artnesia.databinding.FragmentHomeBinding
 import com.bangkit.artnesia.ui.adapter.ArticleAdapter
 import com.bangkit.artnesia.ui.adapter.LiteratureAdapter
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.*
 
 class HomeFragment : Fragment() {
@@ -24,6 +26,7 @@ class HomeFragment : Fragment() {
     private var _binding : FragmentHomeBinding? = null
     private val binding get() = _binding as FragmentHomeBinding
     private val mFireStore = FirebaseFirestore.getInstance()
+    private lateinit var mUserDetails: User
 
     private lateinit var literatureAdapter: LiteratureAdapter
     private lateinit var literatureList: ArrayList<Literature>
@@ -54,8 +57,44 @@ class HomeFragment : Fragment() {
 
         binding.isHome.setImageList(slideModel , ScaleTypes.CENTER_CROP)
 
+        getUserDetails()
         getLiterature()
         getArticle()
+    }
+
+    private fun getCurrentUserID(): String {
+        val currentUser = FirebaseAuth.getInstance().currentUser
+
+        var currentUserID = ""
+        if (currentUser != null) {
+            currentUserID = currentUser.uid
+        }
+
+        return currentUserID
+    }
+
+    private fun userDetailsSuccess(user: User) {
+        mUserDetails = user
+        binding.tvHomeProfileName.text = user.name
+    }
+
+    private fun getUserDetails() {
+        mFireStore.collection("users")
+            .document(getCurrentUserID())
+            .get()
+            .addOnSuccessListener { document ->
+                Log.i(this.javaClass.simpleName, document.toString())
+
+                val user = document.toObject(User::class.java)!!
+                userDetailsSuccess(user)
+            }
+            .addOnFailureListener { e ->
+                Log.e(
+                    this.javaClass.simpleName,
+                    "Error while getting user details.",
+                    e
+                )
+            }
     }
 
     private fun getLiterature(){
