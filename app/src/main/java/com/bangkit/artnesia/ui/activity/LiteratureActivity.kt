@@ -1,76 +1,64 @@
 package com.bangkit.artnesia.ui.activity
 
-import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
+import android.view.View
+import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.bangkit.artnesia.data.model.Literature
 import com.bangkit.artnesia.databinding.ActivityLiteratureBinding
-import com.bangkit.artnesia.ui.adapter.ListLiteratureAdapter
-import com.google.firebase.firestore.*
+import com.bangkit.artnesia.ui.adapter.LitAdapter
 
 class LiteratureActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLiteratureBinding
-
-    private val mFireStore = FirebaseFirestore.getInstance()
-
-    private lateinit var literatureAdapter: ListLiteratureAdapter
-    private lateinit var literatureList: ArrayList<Literature>
-    private lateinit var literatureRV: RecyclerView
+    private lateinit var litAdapter: LitAdapter
+    private lateinit var viewModelFactory: ViewModelFactory
+    private val literatureViewModel: LiteratureViewModel by viewModels { viewModelFactory }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLiteratureBinding.inflate(layoutInflater)
         setContentView(binding.root)
         supportActionBar?.hide()
+        viewModelFactory = ViewModelFactory.getInstance(this)
+        resource()
 
-        getLiterature()
+        binding.rvListLiterature.layoutManager = LinearLayoutManager(this)
+        litAdapter = LitAdapter()
+        literatureViewModel.userStories.observe(this) {
+            litAdapter.setData(it)
+        }
+        binding.rvListLiterature.adapter = litAdapter
+
+        literatureViewModel.message.observe(this) {
+            Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
+        }
+
         val resultStr = intent.getStringExtra("imageDetection")
         binding.search.setQuery(resultStr, false)
+
+        getListStory()
+
     }
 
-    private fun getLiterature() {
-        literatureRV = binding.rvListLiterature
-        literatureRV.layoutManager = LinearLayoutManager(this)
-        literatureRV.setHasFixedSize(true)
-
-        literatureList = arrayListOf()
-
-        literatureAdapter = ListLiteratureAdapter(this, literatureList)
-
-        literatureRV.adapter = literatureAdapter
-
-        getLiteratureData()
+    private fun getListStory() {
+        literatureViewModel.getStories()
     }
 
-    private fun getLiteratureData() {
-        mFireStore.collection("literature")
-            .addSnapshotListener(object : EventListener<QuerySnapshot> {
-                @SuppressLint("NotifyDataSetChanged")
-                override fun onEvent(
-                    value: QuerySnapshot?,
-                    error: FirebaseFirestoreException?
-                ) {
-                    if (error != null) {
-                        Log.e("Firestore error", error.message.toString())
-                        return
-                    }
+    private fun resource() {
+        literatureViewModel.loading.observe(this) { event ->
+            event.getContentIfNotHandled()?.let {
+                isLoading(it)
+            }
+        }
+    }
 
-                    for (dc: DocumentChange in value?.documentChanges!!) {
-                        if (dc.type == DocumentChange.Type.ADDED) {
-                            val lit = dc.document.toObject(Literature::class.java)
-                            lit.literature_id = dc.document.id
-
-                            literatureList.add(lit)
-                        }
-                    }
-                    literatureList.shuffle()
-
-                    literatureAdapter.notifyDataSetChanged()
-                }
-            })
+    private fun isLoading(isLoading: Boolean) {
+        if (isLoading) {
+            binding.progressBar3.visibility = View.VISIBLE
+        } else {
+            binding.progressBar3.visibility = View.GONE
+        }
     }
 }

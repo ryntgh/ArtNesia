@@ -10,14 +10,9 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.bangkit.artnesia.R
-import com.bangkit.artnesia.data.local.ProductData
 import com.bangkit.artnesia.data.model.Product
-import com.bangkit.artnesia.data.model.ProductModel
-import com.bangkit.artnesia.databinding.FragmentHomeBinding
 import com.bangkit.artnesia.databinding.FragmentShopBinding
 import com.bangkit.artnesia.ui.activity.CartActivity
-import com.bangkit.artnesia.ui.adapter.CoverProductAdapter
 import com.bangkit.artnesia.ui.adapter.ProductAdapter
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel

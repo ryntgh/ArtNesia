@@ -24,4 +24,5 @@
     <string name="more_about_this_art">Know more</string>
     <string name="tv_classified_item">This image classified as</string>
     <string name="msg_for_available_stock">Available stock is %1$s!. You can not add more than stock quantity.</string>
+    <string name="classification">Classification:</string>
 </resources>
