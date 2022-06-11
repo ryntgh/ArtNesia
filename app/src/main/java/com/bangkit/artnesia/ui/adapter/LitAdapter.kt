@@ -5,6 +5,8 @@ import android.content.Intent
 import android.os.Build
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Filter
+import android.widget.Filterable
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -14,26 +16,32 @@ import com.bangkit.artnesia.databinding.LiteratureRowBinding
 import com.bangkit.artnesia.ui.activity.DetectionLiteratureActivity
 import com.bangkit.artnesia.ui.utils.DiffCallBack
 import com.bumptech.glide.Glide
+import java.util.*
 
-class LitAdapter : RecyclerView.Adapter<LitAdapter.ListViewHolder>() {
-    private var listStory = ArrayList<LiteratureItem>()
+class LitAdapter : RecyclerView.Adapter<LitAdapter.ListViewHolder>(), Filterable {
+    private var listLiterature = ArrayList<LiteratureItem>()
+    var literatureFilterList = ArrayList<LiteratureItem>()
+
+    init {
+        literatureFilterList = listLiterature
+    }
 
     inner class ListViewHolder(binding: LiteratureRowBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        var ivStory = binding.imgItemLiterature
+        var ivLiterature = binding.imgItemLiterature
         var tvName = binding.tvLiteratureName
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
-        val itemRowStoryBinding =
+        val literatureRowBinding =
             LiteratureRowBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return ListViewHolder(itemRowStoryBinding)
+        return ListViewHolder(literatureRowBinding)
     }
 
     @SuppressLint("SimpleDateFormat")
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
-        val data = listStory[position]
+        val data = literatureFilterList[position]
 
         holder.apply {
             tvName.text = data.name
@@ -41,7 +49,7 @@ class LitAdapter : RecyclerView.Adapter<LitAdapter.ListViewHolder>() {
                 .load(data.image)
                 .placeholder(R.drawable.placeholder)
                 .error(R.drawable.placeholder)
-                .into(ivStory)
+                .into(ivLiterature)
 
             holder.itemView.setOnClickListener {
                 val intent = Intent(itemView.context, DetectionLiteratureActivity::class.java)
@@ -56,14 +64,54 @@ class LitAdapter : RecyclerView.Adapter<LitAdapter.ListViewHolder>() {
         }
     }
 
-    override fun getItemCount(): Int = listStory.size
+    override fun getItemCount(): Int = literatureFilterList.size
 
-    fun setData(newStory: ArrayList<LiteratureItem>) {
-        val diffUtilCallback = DiffCallBack(listStory, newStory)
-        val diffResult = DiffUtil.calculateDiff(diffUtilCallback)
+    fun setData(litData: ArrayList<LiteratureItem>) {
+        val diffUtilCallback = DiffCallBack(literatureFilterList, litData)
 
-        listStory = newStory
-        diffResult.dispatchUpdatesTo(this)
+        if (this.listLiterature == null) {
+            this.listLiterature = litData
+            this.literatureFilterList = litData
+            notifyItemChanged(0, literatureFilterList.size)
+        } else {
+            val result: DiffUtil.DiffResult = DiffUtil.calculateDiff(diffUtilCallback)
+            this.listLiterature = litData
+            this.literatureFilterList = litData
+            result.dispatchUpdatesTo(this)
+        }
+    }
+
+    override fun getFilter(): Filter {
+        return object : Filter() {
+            override fun performFiltering(charSequence: CharSequence): FilterResults {
+                val charString = charSequence.toString()
+                if (charString.isEmpty()) {
+                    literatureFilterList = listLiterature
+                } else {
+                    val filteredList: ArrayList<LiteratureItem> =
+                        ArrayList<LiteratureItem>()
+                    for (result in listLiterature) {
+                        if (result.name?.lowercase(Locale.getDefault())
+                                ?.contains(charString.lowercase(Locale.getDefault())) == true
+                        ) {
+                            filteredList.add(result)
+                        }
+                    }
+                    literatureFilterList = filteredList
+                }
+                val filterResults = FilterResults()
+                filterResults.values = literatureFilterList
+                return filterResults
+            }
+
+            @SuppressLint("NotifyDataSetChanged")
+            @Suppress("UNCHECKED_CAST")
+            override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
+                literatureFilterList = results?.values as ArrayList<LiteratureItem>
+
+                notifyDataSetChanged()
+            }
+        }
     }
 
     companion object {

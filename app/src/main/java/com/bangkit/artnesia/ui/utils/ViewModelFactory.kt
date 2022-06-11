@@ -1,10 +1,8 @@
-package com.bangkit.artnesia.ui.activity
+package com.bangkit.artnesia.ui.utils
 
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.bangkit.artnesia.ui.utils.Injection
-import com.bangkit.artnesia.ui.utils.Repository
 
 
 class ViewModelFactory private constructor(private val repository: Repository) :

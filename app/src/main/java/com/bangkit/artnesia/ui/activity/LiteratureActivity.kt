@@ -5,9 +5,12 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bangkit.artnesia.databinding.ActivityLiteratureBinding
 import com.bangkit.artnesia.ui.adapter.LitAdapter
+import com.bangkit.artnesia.ui.utils.LiteratureViewModel
+import com.bangkit.artnesia.ui.utils.ViewModelFactory
 
 class LiteratureActivity : AppCompatActivity() {
 
@@ -26,7 +29,7 @@ class LiteratureActivity : AppCompatActivity() {
 
         binding.rvListLiterature.layoutManager = LinearLayoutManager(this)
         litAdapter = LitAdapter()
-        literatureViewModel.userStories.observe(this) {
+        literatureViewModel.dataLiterature.observe(this) {
             litAdapter.setData(it)
         }
         binding.rvListLiterature.adapter = litAdapter
@@ -38,12 +41,24 @@ class LiteratureActivity : AppCompatActivity() {
         val resultStr = intent.getStringExtra("imageDetection")
         binding.search.setQuery(resultStr, false)
 
-        getListStory()
+        binding.search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                litAdapter.filter.filter(newText)
+                return false
+            }
+
+        })
+
+        getListData()
 
     }
 
-    private fun getListStory() {
-        literatureViewModel.getStories()
+    private fun getListData() {
+        literatureViewModel.getLiteratures()
     }
 
     private fun resource() {
