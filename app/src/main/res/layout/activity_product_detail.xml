@@ -76,36 +76,39 @@
 
                 <TextView
                     android:id="@+id/productPrice_ProductDetailsPage"
+                    style="@style/TextTittle"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
                     android:gravity="end"
                     android:text="Price"
                     android:textColor="@color/mainText"
-                    android:textSize="25sp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="10dp"/>
+                    android:textSize="25sp" />
 
                 <TextView
                     android:id="@+id/productName_ProductDetailsPage"
+                    style="@style/TextTittle"
                     android:layout_width="match_parent"
-                    android:maxEms="30"
                     android:layout_height="match_parent"
-                    android:layout_weight="3"
-                    android:text="Product Name"
-                    android:maxLines="2"
-                    android:textColor="@color/mainText"
-                    android:textSize="25sp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginRight="10dp"/>
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="3"
+                    android:maxEms="30"
+                    android:maxLines="2"
+                    android:text="Product Name"
+                    android:textColor="@color/mainText"
+                    android:textSize="25sp" />
 
                 <TextView
-                    android:layout_marginTop="10dp"
                     android:id="@+id/productBrand_ProductDetailsPage"
+                    style="@style/TextContent"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginRight="10dp"
                     android:text="Brand"
                     android:textColor="@color/mainText"
@@ -125,6 +128,7 @@
                     android:transformPivotY="15dp" />
 
                 <TextView
+                    style="@style/TextTittle"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="10dp"
@@ -136,14 +140,15 @@
 
                 <TextView
                     android:id="@+id/productDes_ProductDetailsPage"
+                    style="@style/TextContent"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="10dp"
-                    android:textColor="@color/textAd"
                     android:maxLines="5"
                     android:text="Description"
+                    android:textColor="@color/textAd"
                     android:textSize="13sp" />
 
 
@@ -164,6 +169,7 @@
                         android:orientation="vertical">
 
                         <TextView
+                            style="@style/TextTittle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Shipping info"
@@ -172,6 +178,7 @@
 
                         <TextView
                             android:id="@+id/cardNumberProduct_Details"
+                            style="@style/TextContent"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
@@ -202,6 +209,7 @@
                         android:orientation="vertical">
 
                         <TextView
+                            style="@style/TextTittle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Ratings"
@@ -210,6 +218,7 @@
 
                         <TextView
                             android:id="@+id/RatingProductDetails"
+                            style="@style/TextContent"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
@@ -252,6 +261,7 @@
                         android:layout_marginRight="10dp">
 
                         <TextView
+                            style="@style/TextTittle"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:text="You can also Like this "
@@ -265,6 +275,7 @@
 
                         <TextView
                             android:id="@+id/product_GroupViewAll"
+                            style="@style/TextTittle"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:gravity="center"
@@ -276,6 +287,7 @@
 
                     <TextView
 
+                        style="@style/TextContent"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
@@ -312,13 +324,16 @@
 
         <Button
             android:id="@+id/addToCart_ProductDetailsPage"
+            style="@style/TextTittle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="20dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="20dp"
-            android:text="Add To Bag" />
+            android:text="Add To Bag"
+            android:textColor="@color/white"
+            app:cornerRadius="7dp" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

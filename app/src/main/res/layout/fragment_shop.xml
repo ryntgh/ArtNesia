@@ -64,6 +64,7 @@
 
                         <TextView
 
+                            style="@style/TextTittle"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:text="Just For You"
@@ -77,6 +78,7 @@
 
                         <TextView
                             android:id="@+id/product_GroupViewAll"
+                            style="@style/TextTittle"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:gravity="center"
@@ -88,6 +90,7 @@
 
                     <TextView
 
+                        style="@style/TextContent"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
@@ -135,6 +138,7 @@
 
                         <TextView
 
+                            style="@style/TextTittle"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:text="Sale"
@@ -148,6 +152,7 @@
 
                         <TextView
                             android:id="@+id/saleProduct_ViewAll"
+                            style="@style/TextTittle"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:gravity="center"
@@ -159,6 +164,7 @@
 
                     <TextView
 
+                        style="@style/TextContent"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
@@ -202,6 +208,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:fontFamily="@font/mmedium"
                 android:text="ArtNesia Market"
                 android:textColor="@color/secondary"
                 android:textSize="24sp"

@@ -77,32 +77,35 @@
 
                 <TextView
                     android:id="@+id/productPrice_ProductDetailsPage"
+                    style="@style/TextTittle"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
                     android:gravity="end"
                     android:text="Price"
                     android:textColor="@color/mainText"
-                    android:textSize="25sp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="10dp"/>
+                    android:textSize="25sp" />
 
                 <TextView
                     android:id="@+id/productName_ProductDetailsPage"
+                    style="@style/TextTittle"
                     android:layout_width="match_parent"
-                    android:maxEms="30"
                     android:layout_height="match_parent"
-                    android:layout_weight="3"
-                    android:text="Product Name"
-                    android:maxLines="2"
-                    android:textColor="@color/mainText"
-                    android:textSize="25sp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginRight="10dp"/>
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="3"
+                    android:maxEms="30"
+                    android:maxLines="2"
+                    android:text="Product Name"
+                    android:textColor="@color/mainText"
+                    android:textSize="25sp" />
 
                 <TextView
                     android:id="@+id/productBrand_ProductDetailsPage"
+                    style="@style/TextContent"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="10dp"
@@ -126,6 +129,7 @@
                     android:transformPivotY="15dp" />
 
                 <TextView
+                    style="@style/TextTittle"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="10dp"
@@ -137,17 +141,19 @@
 
                 <TextView
                     android:id="@+id/productDes_ProductDetailsPage"
+                    style="@style/TextContent"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="10dp"
-                    android:textColor="@color/textAd"
                     android:maxLines="5"
                     android:text="Description"
+                    android:textColor="@color/textAd"
                     android:textSize="13sp" />
 
                 <TextView
+                    style="@style/TextTittle"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="10dp"
@@ -159,14 +165,15 @@
 
                 <TextView
                     android:id="@+id/productStock_ProductDetailsPage"
+                    style="@style/TextContent"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="10dp"
-                    android:textColor="@color/textAd"
                     android:maxLines="5"
                     android:text="Description"
+                    android:textColor="@color/textAd"
                     android:textSize="13sp" />
 
             </LinearLayout>
@@ -198,6 +205,7 @@
                         android:layout_marginRight="10dp">
 
                         <TextView
+                            style="@style/TextTittle"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:text="You can also Like this "
@@ -216,19 +224,21 @@
                             android:gravity="center"
                             android:text="View all"
                             android:textColor="@color/mainText"
-                            android:textSize="12sp" />
+                            android:textSize="12sp"
+                            style="@style/TextTittle" />
 
                     </LinearLayout>
 
                     <TextView
 
+                        style="@style/TextContent"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:text="Recommended"
                         android:textColor="@color/textAd"
-                        android:textSize="11sp" />
+                        android:textSize="13sp" />
 
                 </LinearLayout>
 
@@ -260,24 +270,29 @@
 
         <Button
             android:id="@+id/addToCart_ProductDetailsPage"
+            style="@style/TextTittle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="visible"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="20dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="20dp"
-            android:text="Add To Bag" />
+            android:text="Add To Bag"
+            android:textColor="@color/white"
+            android:visibility="visible"
+            app:cornerRadius="7dp" />
 
         <Button
             android:id="@+id/goToCart_ProductDetailsPage"
+            style="@style/TextTittle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="gone"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="20dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="20dp"
-            android:text="Go To Bag" />
+            android:text="Go To Bag"
+            android:textColor="@color/white"
+            android:visibility="gone" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

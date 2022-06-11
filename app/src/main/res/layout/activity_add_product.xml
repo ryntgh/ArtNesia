@@ -80,12 +80,17 @@
                 android:layout_marginEnd="16dp"
                 android:hint="Product Category"
                 android:textColorHint="@color/textAd"
+                app:boxCornerRadiusBottomEnd="7dp"
+                app:boxCornerRadiusBottomStart="7dp"
+                app:boxCornerRadiusTopEnd="7dp"
+                app:boxCornerRadiusTopStart="7dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/fl_product_image">
 
                 <EditText
                     android:id="@+id/et_product_category"
+                    style="@style/TextTittle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
@@ -104,12 +109,17 @@
                 android:layout_marginEnd="16dp"
                 android:hint="Product Title"
                 android:textColorHint="@color/textAd"
+                app:boxCornerRadiusBottomEnd="7dp"
+                app:boxCornerRadiusBottomStart="7dp"
+                app:boxCornerRadiusTopEnd="7dp"
+                app:boxCornerRadiusTopStart="7dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/til_product_category">
 
                 <EditText
                     android:id="@+id/et_product_title"
+                    style="@style/TextTittle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
@@ -128,12 +138,17 @@
                 android:layout_marginEnd="16dp"
                 android:hint="Product Price"
                 android:textColorHint="@color/textAd"
+                app:boxCornerRadiusBottomEnd="7dp"
+                app:boxCornerRadiusBottomStart="7dp"
+                app:boxCornerRadiusTopEnd="7dp"
+                app:boxCornerRadiusTopStart="7dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/til_product_title">
 
                 <EditText
                     android:id="@+id/et_product_price"
+                    style="@style/TextTittle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
@@ -153,12 +168,17 @@
                 android:layout_marginEnd="16dp"
                 android:hint="Product Description"
                 android:textColorHint="@color/textAd"
+                app:boxCornerRadiusBottomEnd="7dp"
+                app:boxCornerRadiusBottomStart="7dp"
+                app:boxCornerRadiusTopEnd="7dp"
+                app:boxCornerRadiusTopStart="7dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/til_product_price">
 
                 <EditText
                     android:id="@+id/et_product_description"
+                    style="@style/TextTittle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textMultiLine"
@@ -178,12 +198,17 @@
                 android:layout_marginEnd="16dp"
                 android:hint="Product quantity"
                 android:textColorHint="@color/textAd"
+                app:boxCornerRadiusBottomEnd="7dp"
+                app:boxCornerRadiusBottomStart="7dp"
+                app:boxCornerRadiusTopEnd="7dp"
+                app:boxCornerRadiusTopStart="7dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/til_product_description">
 
                 <EditText
                     android:id="@+id/et_product_quantity"
+                    style="@style/TextTittle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="number"
@@ -194,6 +219,7 @@
 
             <Button
                 android:id="@+id/btn_submit"
+                style="@style/TextTittle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -208,7 +234,7 @@
                 android:paddingBottom="8dp"
                 android:text="Submit"
                 android:textColor="@android:color/white"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

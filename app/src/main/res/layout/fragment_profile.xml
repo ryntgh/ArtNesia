@@ -20,12 +20,13 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:layout_marginLeft="22dp"
-            android:gravity="center"
-            android:layout_weight="1"
             android:id="@+id/textView2"
+            style="@style/TextTittle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="22dp"
+            android:layout_weight="1"
+            android:gravity="center"
             android:text="My Profile"
             android:textColor="@color/black"
             android:textSize="23sp"
@@ -68,6 +69,7 @@
 
                 <TextView
                     android:id="@+id/profileName_profileFrag"
+                    style="@style/TextTittle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Profile Name"
@@ -76,6 +78,7 @@
 
                 <TextView
                     android:id="@+id/profileEmail_profileFrag"
+                    style="@style/TextContent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Profile Email"
@@ -117,6 +120,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        style="@style/TextTittle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="My Product"
@@ -124,6 +128,7 @@
                         android:textSize="16sp" />
 
                     <TextView
+                        style="@style/TextContent"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
@@ -164,6 +169,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        style="@style/TextTittle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Sales result"
@@ -171,6 +177,7 @@
                         android:textSize="16sp" />
 
                     <TextView
+                        style="@style/TextContent"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
@@ -212,6 +219,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        style="@style/TextTittle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="My Order"
@@ -219,6 +227,7 @@
                         android:textSize="16sp" />
 
                     <TextView
+                        style="@style/TextContent"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
@@ -261,6 +270,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        style="@style/TextTittle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Address"
@@ -269,6 +279,7 @@
 
                     <TextView
                         android:id="@+id/cardsNumber_profileFrag"
+                        style="@style/TextContent"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
@@ -310,6 +321,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        style="@style/TextTittle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="History"
@@ -317,6 +329,7 @@
                         android:textSize="16sp" />
 
                     <TextView
+                        style="@style/TextContent"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
@@ -361,6 +374,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        style="@style/TextTittle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Edit Profile"
@@ -368,6 +382,7 @@
                         android:textSize="16sp" />
 
                     <TextView
+                        style="@style/TextContent"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
@@ -405,7 +420,8 @@
             android:text="Logout"
             android:textColor="@color/white"
             app:cornerRadius="8dp"
-            tools:ignore="DuplicateSpeakableTextCheck"/>
+            tools:ignore="DuplicateSpeakableTextCheck"
+            style="@style/TextTittle" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

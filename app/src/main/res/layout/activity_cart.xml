@@ -21,6 +21,7 @@
 
     <TextView
         android:id="@+id/tv_no_cart_item_found"
+        style="@style/TextTittle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -54,6 +55,7 @@
             android:orientation="horizontal">
 
             <TextView
+                style="@style/TextContent"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -63,6 +65,7 @@
 
             <TextView
                 android:id="@+id/tv_sub_total"
+                style="@style/TextContent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
@@ -77,6 +80,7 @@
             android:orientation="horizontal">
 
             <TextView
+                style="@style/TextContent"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -86,6 +90,7 @@
 
             <TextView
                 android:id="@+id/tv_shipping_charge"
+                style="@style/TextContent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
@@ -100,6 +105,7 @@
             android:orientation="horizontal">
 
             <TextView
+                style="@style/TextContent"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -109,6 +115,7 @@
 
             <TextView
                 android:id="@+id/tv_total_amount"
+                style="@style/TextContent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
@@ -119,6 +126,7 @@
 
         <Button
             android:id="@+id/btn_checkout"
+            style="@style/TextTittle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -132,7 +140,7 @@
             android:paddingBottom="8dp"
             android:text="Checkout"
             android:textColor="@android:color/white"
-            android:textSize="18sp"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_total_amount" />

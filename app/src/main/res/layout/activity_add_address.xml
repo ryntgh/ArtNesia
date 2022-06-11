@@ -27,12 +27,17 @@
                 android:layout_marginEnd="16dp"
                 android:hint="Nama Penerima"
                 android:textColorHint="@color/textAd"
+                app:boxCornerRadiusBottomEnd="7dp"
+                app:boxCornerRadiusBottomStart="7dp"
+                app:boxCornerRadiusTopEnd="7dp"
+                app:boxCornerRadiusTopStart="7dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <EditText
                     android:id="@+id/et_full_name"
+                    style="@style/TextTittle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
@@ -51,12 +56,17 @@
                 android:layout_marginEnd="16dp"
                 android:hint="Nomor telepon"
                 android:textColorHint="@color/textAd"
+                app:boxCornerRadiusBottomEnd="7dp"
+                app:boxCornerRadiusBottomStart="7dp"
+                app:boxCornerRadiusTopEnd="7dp"
+                app:boxCornerRadiusTopStart="7dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/til_full_name">
 
                 <EditText
                     android:id="@+id/et_phone_number"
+                    style="@style/TextTittle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="phone"
@@ -75,12 +85,17 @@
                 android:layout_marginEnd="16dp"
                 android:hint="Alamat"
                 android:textColorHint="@color/textAd"
+                app:boxCornerRadiusBottomEnd="7dp"
+                app:boxCornerRadiusBottomStart="7dp"
+                app:boxCornerRadiusTopEnd="7dp"
+                app:boxCornerRadiusTopStart="7dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/til_phone_number">
 
                 <EditText
                     android:id="@+id/et_address"
+                    style="@style/TextTittle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textMultiLine"
@@ -101,12 +116,17 @@
                 android:layout_marginEnd="16dp"
                 android:hint="Kode Pos"
                 android:textColorHint="@color/textAd"
+                app:boxCornerRadiusBottomEnd="7dp"
+                app:boxCornerRadiusBottomStart="7dp"
+                app:boxCornerRadiusTopEnd="7dp"
+                app:boxCornerRadiusTopStart="7dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/til_address">
 
                 <EditText
                     android:id="@+id/et_zip_code"
+                    style="@style/TextTittle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
@@ -125,12 +145,17 @@
                 android:layout_marginEnd="16dp"
                 android:hint="Catatan"
                 android:textColorHint="@color/textAd"
+                app:boxCornerRadiusBottomEnd="7dp"
+                app:boxCornerRadiusBottomStart="7dp"
+                app:boxCornerRadiusTopEnd="7dp"
+                app:boxCornerRadiusTopStart="7dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/til_zip_code">
 
                 <EditText
                     android:id="@+id/et_additional_note"
+                    style="@style/TextTittle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
@@ -153,6 +178,7 @@
 
                 <RadioButton
                     android:id="@+id/rb_home"
+                    style="@style/TextTittle"
                     android:layout_width="0dp"
                     android:layout_height="40dp"
                     android:layout_weight="1"
@@ -166,6 +192,7 @@
 
                 <RadioButton
                     android:id="@+id/rb_office"
+                    style="@style/TextTittle"
                     android:layout_width="0dp"
                     android:layout_height="40dp"
                     android:layout_marginStart="5dp"
@@ -180,6 +207,7 @@
 
                 <RadioButton
                     android:id="@+id/rb_other"
+                    style="@style/TextTittle"
                     android:layout_width="0dp"
                     android:layout_height="40dp"
                     android:layout_weight="1"
@@ -202,6 +230,10 @@
                 android:hint="Detail Lokasi Lainnya"
                 android:textColorHint="@color/textAd"
                 android:visibility="gone"
+                app:boxCornerRadiusBottomEnd="7dp"
+                app:boxCornerRadiusBottomStart="7dp"
+                app:boxCornerRadiusTopEnd="7dp"
+                app:boxCornerRadiusTopStart="7dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/rg_type">
@@ -218,6 +250,7 @@
 
             <Button
                 android:id="@+id/btn_submit_address"
+                style="@style/TextContent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -231,7 +264,7 @@
                 android:paddingBottom="8dp"
                 android:text="Submit"
                 android:textColor="@android:color/white"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/til_other_details" />

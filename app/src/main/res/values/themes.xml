@@ -32,13 +32,13 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@color/mainText</item>
-        <item name="android:fontFamily">@font/pregular</item>
+        <item name="android:fontFamily">@font/mmedium</item>
     </style>
 
     <style name="TextContent">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@color/mainText</item>
-        <item name="android:fontFamily">@font/mlight</item>
+        <item name="android:fontFamily">@font/googlesans_regular</item>
     </style>
 </resources>

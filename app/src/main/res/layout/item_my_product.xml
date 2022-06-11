@@ -43,6 +43,7 @@
 
         <TextView
             android:id="@+id/tv_item_name"
+            style="@style/TextTittle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/mainText"
@@ -51,6 +52,7 @@
 
         <TextView
             android:id="@+id/tv_item_price"
+            style="@style/TextContent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"

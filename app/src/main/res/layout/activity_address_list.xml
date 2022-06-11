@@ -8,6 +8,7 @@
 
     <TextView
         android:id="@+id/tv_add_address"
+        style="@style/TextTittle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
@@ -35,6 +36,7 @@
 
     <TextView
         android:id="@+id/tv_no_address_found"
+        style="@style/TextTittle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"

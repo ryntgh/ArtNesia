@@ -22,6 +22,7 @@
             android:orientation="vertical">
 
             <TextView
+                style="@style/TextContent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -49,6 +50,7 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        style="@style/TextContent"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -59,6 +61,7 @@
 
                     <TextView
                         android:id="@+id/tv_order_details_id"
+                        style="@style/TextContent"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAlignment="center"
@@ -73,6 +76,7 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        style="@style/TextContent"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -83,6 +87,7 @@
 
                     <TextView
                         android:id="@+id/tv_order_details_date"
+                        style="@style/TextContent"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAlignment="center"
@@ -97,6 +102,7 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        style="@style/TextContent"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -107,6 +113,7 @@
 
                     <TextView
                         android:id="@+id/tv_order_status"
+                        style="@style/TextContent"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Pending"
@@ -117,6 +124,7 @@
             </LinearLayout>
 
             <TextView
+                style="@style/TextContent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -134,6 +142,7 @@
                 android:layout_height="wrap_content" />
 
             <TextView
+                style="@style/TextContent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -157,6 +166,7 @@
 
                 <TextView
                     android:id="@+id/tv_my_order_details_address_type"
+                    style="@style/TextTittle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingTop="2dp"
@@ -168,15 +178,17 @@
 
                 <TextView
                     android:id="@+id/tv_my_order_details_full_name"
+                    style="@style/TextTittle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textStyle="bold"
                     android:textColor="@color/mainText"
                     android:textSize="18sp"
+                    android:textStyle="bold"
                     tools:text="Arief Fajar" />
 
                 <TextView
                     android:id="@+id/tv_my_order_details_address"
+                    style="@style/TextTittle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
@@ -186,6 +198,7 @@
 
                 <TextView
                     android:id="@+id/tv_my_order_details_additional_note"
+                    style="@style/TextTittle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
@@ -195,6 +208,7 @@
 
                 <TextView
                     android:id="@+id/tv_my_order_details_other_details"
+                    style="@style/TextTittle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
@@ -204,6 +218,7 @@
 
                 <TextView
                     android:id="@+id/tv_my_order_details_mobile_number"
+                    style="@style/TextTittle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
@@ -213,6 +228,7 @@
             </LinearLayout>
 
             <TextView
+                style="@style/TextContent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -237,6 +253,7 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        style="@style/TextContent"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -246,6 +263,7 @@
 
                     <TextView
                         android:id="@+id/tv_order_details_sub_total"
+                        style="@style/TextContent"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAlignment="center"
@@ -260,6 +278,7 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        style="@style/TextContent"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -269,6 +288,7 @@
 
                     <TextView
                         android:id="@+id/tv_order_details_shipping_charge"
+                        style="@style/TextContent"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAlignment="center"
@@ -283,22 +303,24 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        style="@style/TextContent"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:textStyle="bold"
                         android:text="Total"
                         android:textColor="@color/mainText"
-                        android:textSize="18sp" />
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/tv_order_details_total_amount"
+                        style="@style/TextContent"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAlignment="center"
-                        android:textStyle="bold"
                         android:textColor="@color/mainText"
                         android:textSize="18sp"
+                        android:textStyle="bold"
                         tools:text="Rp 110000" />
                 </LinearLayout>
             </LinearLayout>
@@ -315,16 +337,18 @@
                 android:paddingBottom="2dp">
 
                 <TextView
+                    style="@style/TextContent"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_weight="1"
-                    android:textStyle="bold"
                     android:text="Payment Mode"
                     android:textColor="@color/mainText"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
                 <TextView
+                    style="@style/TextContent"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"

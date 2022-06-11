@@ -1,6 +1,7 @@
 package com.bangkit.artnesia.ui.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bangkit.artnesia.R
 import com.bangkit.artnesia.data.model.Product
+import com.bangkit.artnesia.ui.activity.DetailProductActivity
 import com.bumptech.glide.Glide
 
 class AllProductAdapter(
@@ -43,7 +45,10 @@ class AllProductAdapter(
             holder.buttonDelete.visibility = View.GONE
 
             holder.itemView.setOnClickListener {
-                //For detail history,coming soon
+                val intent = Intent(context, DetailProductActivity::class.java)
+                intent.putExtra(DetailProductActivity.EXTRA_PRODUCT_ID, model.product_id)
+                intent.putExtra(DetailProductActivity.EXTRA_PRODUCT_OWNER_ID, model.user_id)
+                context.startActivity(intent)
             }
         }
     }

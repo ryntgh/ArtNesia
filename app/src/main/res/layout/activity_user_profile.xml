@@ -17,6 +17,7 @@
 
         <TextView
             android:id="@+id/tv_title"
+            style="@style/TextTittle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
@@ -25,7 +26,8 @@
             android:text="EDIT PROFILE"
             android:textColor="@color/white"
             android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:layout_editor_absoluteX="16dp" />
 
     </androidx.appcompat.widget.Toolbar>
 
@@ -84,6 +86,7 @@
 
                 <EditText
                     android:id="@+id/et_name"
+                    style="@style/TextTittle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
@@ -108,6 +111,7 @@
 
                 <EditText
                     android:id="@+id/et_email"
+                    style="@style/TextTittle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textEmailAddress"
@@ -132,6 +136,7 @@
 
                 <EditText
                     android:id="@+id/et_mobile_number"
+                    style="@style/TextTittle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="phone"
@@ -155,6 +160,7 @@
 
                 <RadioButton
                     android:id="@+id/rb_male"
+                    style="@style/TextTittle"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginEnd="3dp"
@@ -169,6 +175,7 @@
 
                 <RadioButton
                     android:id="@+id/rb_female"
+                    style="@style/TextTittle"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginStart="3dp"
@@ -183,6 +190,7 @@
 
             <Button
                 android:id="@+id/btn_save"
+                style="@style/TextTittle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -197,7 +205,7 @@
                 android:paddingBottom="8dp"
                 android:text="SAVE"
                 android:textColor="@android:color/white"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

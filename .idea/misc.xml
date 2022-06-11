@@ -15,30 +15,45 @@
         <entry key="..\:/Users/ryant/AndroidStudioProjects/ArtNesia/app/src/main/res/drawable/ic_refresh.xml" value="0.28" />
         <entry key="..\:/Users/ryant/AndroidStudioProjects/ArtNesia/app/src/main/res/drawable/ic_shopping_cart.xml" value="0.28" />
         <entry key="..\:/Users/ryant/AndroidStudioProjects/ArtNesia/app/src/main/res/drawable/item_selector.xml" value="0.28" />
+        <entry key="..\:/Users/ryant/AndroidStudioProjects/ArtNesia/app/src/main/res/layout/activity_add_address.xml" value="0.371875" />
+        <entry key="..\:/Users/ryant/AndroidStudioProjects/ArtNesia/app/src/main/res/layout/activity_add_product.xml" value="0.371875" />
+        <entry key="..\:/Users/ryant/AndroidStudioProjects/ArtNesia/app/src/main/res/layout/activity_address_list.xml" value="0.371875" />
         <entry key="..\:/Users/ryant/AndroidStudioProjects/ArtNesia/app/src/main/res/layout/activity_camera.xml" value="0.371875" />
-        <entry key="..\:/Users/ryant/AndroidStudioProjects/ArtNesia/app/src/main/res/layout/activity_detail_article.xml" value="0.22735507246376813" />
+        <entry key="..\:/Users/ryant/AndroidStudioProjects/ArtNesia/app/src/main/res/layout/activity_cart.xml" value="0.371875" />
+        <entry key="..\:/Users/ryant/AndroidStudioProjects/ArtNesia/app/src/main/res/layout/activity_checkout.xml" value="0.371875" />
+        <entry key="..\:/Users/ryant/AndroidStudioProjects/ArtNesia/app/src/main/res/layout/activity_detail_article.xml" value="0.5" />
         <entry key="..\:/Users/ryant/AndroidStudioProjects/ArtNesia/app/src/main/res/layout/activity_detail_literature.xml" value="0.4537037037037037" />
         <entry key="..\:/Users/ryant/AndroidStudioProjects/ArtNesia/app/src/main/res/layout/activity_detail_product.xml" value="0.371875" />
         <entry key="..\:/Users/ryant/AndroidStudioProjects/ArtNesia/app/src/main/res/layout/activity_detection.xml" value="0.371875" />
         <entry key="..\:/Users/ryant/AndroidStudioProjects/ArtNesia/app/src/main/res/layout/activity_detection_literature.xml" value="0.25" />
+        <entry key="..\:/Users/ryant/AndroidStudioProjects/ArtNesia/app/src/main/res/layout/activity_history.xml" value="0.371875" />
         <entry key="..\:/Users/ryant/AndroidStudioProjects/ArtNesia/app/src/main/res/layout/activity_literature.xml" value="0.371875" />
         <entry key="..\:/Users/ryant/AndroidStudioProjects/ArtNesia/app/src/main/res/layout/activity_login.xml" value="0.371875" />
         <entry key="..\:/Users/ryant/AndroidStudioProjects/ArtNesia/app/src/main/res/layout/activity_main.xml" value="0.19166666666666668" />
+        <entry key="..\:/Users/ryant/AndroidStudioProjects/ArtNesia/app/src/main/res/layout/activity_my_order.xml" value="0.371875" />
         <entry key="..\:/Users/ryant/AndroidStudioProjects/ArtNesia/app/src/main/res/layout/activity_my_product.xml" value="0.371875" />
+        <entry key="..\:/Users/ryant/AndroidStudioProjects/ArtNesia/app/src/main/res/layout/activity_order_list.xml" value="0.371875" />
         <entry key="..\:/Users/ryant/AndroidStudioProjects/ArtNesia/app/src/main/res/layout/activity_product_detail.xml" value="0.371875" />
         <entry key="..\:/Users/ryant/AndroidStudioProjects/ArtNesia/app/src/main/res/layout/activity_register.xml" value="0.371875" />
+        <entry key="..\:/Users/ryant/AndroidStudioProjects/ArtNesia/app/src/main/res/layout/activity_search_product.xml" value="0.371875" />
+        <entry key="..\:/Users/ryant/AndroidStudioProjects/ArtNesia/app/src/main/res/layout/activity_sold_product.xml" value="0.371875" />
+        <entry key="..\:/Users/ryant/AndroidStudioProjects/ArtNesia/app/src/main/res/layout/activity_splash.xml" value="0.371875" />
         <entry key="..\:/Users/ryant/AndroidStudioProjects/ArtNesia/app/src/main/res/layout/activity_temporary_image.xml" value="0.371875" />
+        <entry key="..\:/Users/ryant/AndroidStudioProjects/ArtNesia/app/src/main/res/layout/activity_user_profile.xml" value="0.371875" />
         <entry key="..\:/Users/ryant/AndroidStudioProjects/ArtNesia/app/src/main/res/layout/adapter_movie.xml" value="0.371875" />
         <entry key="..\:/Users/ryant/AndroidStudioProjects/ArtNesia/app/src/main/res/layout/article_row.xml" value="0.371875" />
         <entry key="..\:/Users/ryant/AndroidStudioProjects/ArtNesia/app/src/main/res/layout/category_row.xml" value="0.371875" />
-        <entry key="..\:/Users/ryant/AndroidStudioProjects/ArtNesia/app/src/main/res/layout/dialog_progress.xml" value="0.18085106382978725" />
+        <entry key="..\:/Users/ryant/AndroidStudioProjects/ArtNesia/app/src/main/res/layout/dialog_progress.xml" value="0.33" />
         <entry key="..\:/Users/ryant/AndroidStudioProjects/ArtNesia/app/src/main/res/layout/fragment_explore.xml" value="0.371875" />
         <entry key="..\:/Users/ryant/AndroidStudioProjects/ArtNesia/app/src/main/res/layout/fragment_home.xml" value="0.371875" />
-        <entry key="..\:/Users/ryant/AndroidStudioProjects/ArtNesia/app/src/main/res/layout/fragment_profile.xml" value="0.5" />
+        <entry key="..\:/Users/ryant/AndroidStudioProjects/ArtNesia/app/src/main/res/layout/fragment_profile.xml" value="0.33" />
         <entry key="..\:/Users/ryant/AndroidStudioProjects/ArtNesia/app/src/main/res/layout/fragment_shop.xml" value="0.2513586956521739" />
+        <entry key="..\:/Users/ryant/AndroidStudioProjects/ArtNesia/app/src/main/res/layout/item_address.xml" value="0.371875" />
+        <entry key="..\:/Users/ryant/AndroidStudioProjects/ArtNesia/app/src/main/res/layout/item_cart_layout.xml" value="0.371875" />
         <entry key="..\:/Users/ryant/AndroidStudioProjects/ArtNesia/app/src/main/res/layout/item_cover.xml" value="0.2513586956521739" />
         <entry key="..\:/Users/ryant/AndroidStudioProjects/ArtNesia/app/src/main/res/layout/item_literature.xml" value="0.67" />
-        <entry key="..\:/Users/ryant/AndroidStudioProjects/ArtNesia/app/src/main/res/layout/item_product.xml" value="0.2513586956521739" />
+        <entry key="..\:/Users/ryant/AndroidStudioProjects/ArtNesia/app/src/main/res/layout/item_my_product.xml" value="0.371875" />
+        <entry key="..\:/Users/ryant/AndroidStudioProjects/ArtNesia/app/src/main/res/layout/item_product.xml" value="0.5" />
         <entry key="..\:/Users/ryant/AndroidStudioProjects/ArtNesia/app/src/main/res/layout/literature_row.xml" value="0.4720616570327553" />
         <entry key="..\:/Users/ryant/AndroidStudioProjects/ArtNesia/app/src/main/res/layout/popup_window.xml" value="0.371875" />
         <entry key="..\:/Users/ryant/AndroidStudioProjects/ArtNesia/app/src/main/res/layout/tes.xml" value="0.371875" />

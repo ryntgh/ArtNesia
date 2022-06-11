@@ -39,23 +39,25 @@
                 app:layout_constraintBottom_toBottomOf="@id/img_view1">
 
                 <TextView
+                    style="@style/TextTittle"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="Selamat datang, "
                     android:fontFamily="@font/mmedium"
+                    android:text="Selamat datang, "
+                    android:textColor="@color/white"
                     android:textSize="20sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/white"/>
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/tv_home_profile_name"
+                    style="@style/TextTittle"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="name"
                     android:fontFamily="@font/mmedium"
+                    android:text="name"
+                    android:textColor="@color/white"
                     android:textSize="26sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/white"/>
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <LinearLayout
@@ -107,6 +109,7 @@
 
                         <TextView
 
+                            style="@style/TextTittle"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:text="Explore New"
@@ -120,6 +123,7 @@
 
                         <TextView
                             android:id="@+id/exploreItem_ViewAll"
+                            style="@style/TextTittle"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:gravity="center"
@@ -131,6 +135,7 @@
 
                     <TextView
 
+                        style="@style/TextContent"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
@@ -176,6 +181,7 @@
 
                         <TextView
 
+                            style="@style/TextTittle"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:text="Article"
@@ -189,6 +195,7 @@
 
                         <TextView
                             android:id="@+id/article_ViewAll"
+                            style="@style/TextTittle"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:gravity="center"
@@ -200,6 +207,7 @@
 
                     <TextView
 
+                        style="@style/TextContent"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
