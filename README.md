@@ -1,4 +1,4 @@
-ArtNesia - Machine Learning
+ArtNesia - Mobile Development
 ==
 
 ## Overview
