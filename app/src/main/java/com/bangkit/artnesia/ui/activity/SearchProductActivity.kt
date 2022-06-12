@@ -4,11 +4,15 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bangkit.artnesia.data.model.Product
+import com.bangkit.artnesia.data.remote.response.LiteratureItem
 import com.bangkit.artnesia.databinding.ActivitySearchProductBinding
 import com.bangkit.artnesia.ui.adapter.AllProductAdapter
 import com.google.firebase.firestore.FirebaseFirestore
+import java.util.*
+import kotlin.collections.ArrayList
 
 class SearchProductActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySearchProductBinding
@@ -22,6 +26,23 @@ class SearchProductActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         getProductList()
+
+        binding.search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                if (query != null) {
+                    searchProductList(query)
+                }
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                if (newText != null) {
+                    searchProductList(newText)
+                }
+                return false
+            }
+
+        })
     }
 
     private fun getProductList() {
@@ -44,7 +65,6 @@ class SearchProductActivity : AppCompatActivity() {
 
     private fun searchProductList(search:String) {
         mFireStore.collection("products")
-            .whereArrayContains("title",search)
             .get()
             .addOnSuccessListener { document ->
                 Log.e(this.javaClass.simpleName, document.documents.toString())
@@ -52,7 +72,15 @@ class SearchProductActivity : AppCompatActivity() {
                 for (i in document.documents) {
                     val product = i.toObject(Product::class.java)!!
                     product.product_id = i.id
-                    list.add(product)
+                    //list.add(product)
+
+                    if (search.isEmpty()) {
+                        list.add(product)
+                    } else {
+                        if (product.title.lowercase(Locale.getDefault()).contains(search.lowercase(Locale.getDefault()))){
+                            list.add(product)
+                        }
+                    }
                 }
                 successSoldProductsList(list)
             }
